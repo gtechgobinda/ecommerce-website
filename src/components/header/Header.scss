@@ -48,9 +48,9 @@
     .right {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
       @include md {
-        gap: 25px;
+        gap: 20px;
       }
       svg {
         font-size: 20px;
@@ -59,8 +59,21 @@
           font-size: 24px;
         }
       }
+      .my-orders-icon {
+        display: none;
+        @include md {
+          display: block;
+        }
+      }
+      .favourite-icon {
+        display: none;
+        @include md {
+          display: block;
+        }
+      }
       .cart-icon {
         position: relative;
+        top: 2px;
         span {
           min-width: 20px;
           text-align: center;
@@ -72,6 +85,87 @@
           font-size: 12px;
           line-height: 1;
           border-radius: 10px;
+        }
+      }
+      .login-icon {
+        display: none;
+        @include md {
+          display: block;
+        }
+      }
+      .navbar-menu {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // background: black;
+        svg {
+          width: 70%;
+          height: 70%;
+          color: white;
+        }
+        .menu {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          z-index: 5;
+
+          padding: 1rem;
+          width: 80%;
+          height: 100vh;
+
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          flex-direction: column;
+
+          background: url("../../assets/bgWhite.png");
+          background-color: black;
+          background-size: cover;
+          background-repeat: repeat;
+
+          box-shadow: 0 0 20px rgba(168, 168, 168, 0.15);
+          svg {
+            width: 35px;
+            height: 35px;
+            color: white;
+            margin: 0.5rem 1rem;
+          }
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+
+            li {
+              margin: 1rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-transform: uppercase;
+              cursor: pointer;
+              svg {
+                color: white;
+              }
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+        @include md {
+          display: none;
         }
       }
     }
