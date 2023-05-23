@@ -50,7 +50,10 @@ const Header = () => {
               <CgShoppingCart />
               {<span>5</span>}
             </span>
-            <FiLogIn className="login-icon" />
+            <FiLogIn
+              className="login-icon"
+              onClick={() => navigate("/login")}
+            />
             <div className="navbar-menu">
               <GoThreeBars onClick={() => setToggle(true)} />
               {toggle && (
