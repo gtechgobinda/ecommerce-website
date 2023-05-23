@@ -1,1 +1,92 @@
 @import "../../../css-config/mixins.scss";
+
+.reset-form {
+  height: 100vh;
+  background-image: url("../../../assets/profile-bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .form-content {
+    header {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      text-transform: uppercase;
+      font-size: 30px;
+    }
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .field {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        @include md {
+          width: 150px;
+        }
+        &.input-field {
+          width: 100%;
+          input {
+            width: 100%;
+            padding: 10px 20px;
+            outline: none;
+            font-size: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            @include md {
+              width: 350px;
+              font-size: 20px;
+            }
+          }
+        }
+        &.button-field {
+          width: 100%;
+          button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #8e2de2;
+            color: white;
+            border: none;
+            font-size: 15px;
+            text-transform: uppercase;
+            cursor: pointer;
+            @include md {
+              width: 350px;
+              font-size: 20px;
+            }
+            &:hover {
+              background-color: #944bd4;
+              transition: ease-in-out;
+            }
+          }
+        }
+      }
+    }
+    .form-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 180px;
+      cursor: pointer;
+      @include md {
+        gap: 200px;
+      }
+      span {
+        color: rgb(66, 65, 65);
+        font-size: 15px;
+        @include md {
+          font-size: 20px;
+        }
+        &:hover {
+          color: #8e2de2;
+        }
+      }
+    }
+  }
+}
