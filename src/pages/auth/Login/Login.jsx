@@ -1,8 +1,12 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Loader from "../../../components/loader/Loader";
 import { auth } from "../../../firebase/config";
 import "./Login.scss";
@@ -28,9 +32,22 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+
+  //login with google
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        toast.success("Login Successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <>
-      <ToastContainer />
       {isLoading && <Loader />}
       <div className="login-form">
         <div className="form-content">
@@ -64,7 +81,7 @@ const Login = () => {
 
           <p className="or">--- OR ---</p>
           <div className="google-button">
-            <button>
+            <button onClick={signInWithGoogle}>
               <FcGoogle />
               Login With Google
             </button>
