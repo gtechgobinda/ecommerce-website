@@ -1,41 +1,66 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loader from "../../../components/loader/Loader";
+import { auth } from "../../../firebase/config";
 import "./Register.scss";
 const Register = () => {
-  // const [fullName, setFullName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpPassword, setConfirmPassword] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  const handleSignup = (e) => {
+  const navigate = useNavigate();
+  const registerUser = (e) => {
     e.preventDefault();
-    // console.log(fullName, email, password);
+    // console.log(fullName, email, password, confirmpPassword);
+    if (password !== confirmpPassword) {
+      toast.error("Password don't match");
+    } else {
+      setIsLoading(true);
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          setIsLoading(false);
+          toast.success("Registration Successfull..");
+          navigate("/login");
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          setIsLoading(false);
+        });
+    }
   };
   return (
     <>
+      <ToastContainer />
+      {isLoading && <Loader />}
       <div className="signup-form">
         <div className="form-content">
           <header>Register</header>
-          <form className="form" onSubmit={handleSignup}>
-            {/* <div className="field input-field">
+          <form className="form" onSubmit={registerUser}>
+            <div className="field input-field">
               <input
                 type="text"
                 placeholder="Enter Full Name"
-                onChange={(e) => setFullName(e.target.value)}
                 value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
                 required
               />
-            </div> */}
+            </div>
             <div className="field input-field">
               <input
                 type="email"
                 placeholder="Enter Email"
-                onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -43,8 +68,8 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Enter Password"
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                value={confirmpPassword}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -52,13 +77,13 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Confirm Password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                value={confirmpPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>
             <div className="field button-field">
-              <button>Register</button>
+              <button type="submit">Register</button>
             </div>
             <div className="form-link">
               <span>
