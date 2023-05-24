@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 // import { AiOutlineHeart} from "react-icons/ai";
+import { signOut } from "firebase/auth";
 import { AiOutlineHome } from "react-icons/ai";
 import { CgShoppingCart } from "react-icons/cg";
 import { FaBoxOpen } from "react-icons/fa";
-import { FiLogIn } from "react-icons/fi";
 import { GoThreeBars } from "react-icons/go";
 import { HiX } from "react-icons/hi";
 import { MdContactSupport } from "react-icons/md";
-import { TbSearch } from "react-icons/tb";
+import { TbLogin, TbLogout, TbSearch } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
+import { auth } from "../../firebase/config";
 import "./Header.scss";
 
 const Header = () => {
@@ -24,6 +25,16 @@ const Header = () => {
     } else {
       setScrolled(false);
     }
+  };
+  const logoutUser = () => {
+    signOut(auth)
+      .then(() => {
+        toast.success("Logout Successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -50,7 +61,7 @@ const Header = () => {
               <CgShoppingCart />
               {<span>5</span>}
             </span>
-            <FiLogIn
+            <TbLogin
               className="login-icon"
               onClick={() => navigate("/login")}
             />
@@ -77,9 +88,14 @@ const Header = () => {
                         <AiOutlineHeart />
                         Favourite
                       </li> */}
+
                       <li onClick={() => navigate("/login")}>
-                        <FiLogIn />
+                        <TbLogin />
                         Login
+                      </li>
+                      <li onClick={logoutUser}>
+                        <TbLogout />
+                        Log Out
                       </li>
                     </ul>
                   </div>

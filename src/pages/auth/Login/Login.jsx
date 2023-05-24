@@ -1,27 +1,47 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import Loader from "../../../components/loader/Loader";
+import { auth } from "../../../firebase/config";
 import "./Login.scss";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const handleLogin = (e) => {
+
+  const loginUser = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     console.log(email, password);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setIsLoading(false);
+        toast.success("Login Successfull");
+        navigate("/");
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.error(error.message);
+      });
   };
   return (
     <>
+      <ToastContainer />
+      {isLoading && <Loader />}
       <div className="login-form">
         <div className="form-content">
           <header>Login</header>
-          <form className="form" onSubmit={handleLogin}>
+          <form className="form" onSubmit={loginUser}>
             <div className="field input-field">
               <input
                 type="email"
                 placeholder="Enter Email"
-                onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -29,13 +49,13 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Enter Password"
-                onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
             <div className="field button-field">
-              <button>Login</button>
+              <button type="submit">Login</button>
             </div>
             <div className="reset">
               <span onClick={() => navigate("/reset")}>Forget Password?</span>

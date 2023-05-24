@@ -1,8 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import Loader from "../../../components/loader/Loader";
 import { auth } from "../../../firebase/config";
 import "./Register.scss";
@@ -40,7 +39,6 @@ const Register = () => {
   };
   return (
     <>
-      <ToastContainer />
       {isLoading && <Loader />}
       <div className="signup-form">
         <div className="form-content">
