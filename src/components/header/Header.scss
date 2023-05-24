@@ -103,7 +103,7 @@
         justify-content: center;
         align-items: center;
         // background: black;
-        svg {
+        .three-bar {
           width: 70%;
           height: 70%;
           color: white;
@@ -130,11 +130,32 @@
           background-repeat: repeat;
 
           box-shadow: 0 0 20px rgba(168, 168, 168, 0.15);
-          svg {
-            width: 35px;
-            height: 35px;
+          .close-btn {
+            width: 100px;
+            height: 100px;
             color: white;
-            margin: 0.5rem 1rem;
+          }
+          .profile-photo {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 5px;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            img {
+              margin: 1rem 1.5rem;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+            }
+            p {
+              span {
+                text-transform: uppercase;
+              }
+            }
           }
           ul {
             list-style: none;
@@ -157,6 +178,10 @@
               cursor: pointer;
               svg {
                 color: white;
+                width: 35px;
+                height: 35px;
+                color: white;
+                margin: 0.5rem 1rem;
               }
               &:hover {
                 text-decoration: underline;
