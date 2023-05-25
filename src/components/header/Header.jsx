@@ -10,6 +10,7 @@ import { MdContactSupport } from "react-icons/md";
 import { TbLogin, TbLogout, TbSearch } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { dummyDP } from "../../assets";
 import { auth } from "../../firebase/config";
 import "./Header.scss";
 
@@ -47,7 +48,11 @@ const Header = () => {
         const uid = user.uid;
         console.log(user.displayName);
         setDisplayName(user.displayName);
-        setProfilePhoto(user.photoURL);
+        if (user.photoURL === null) {
+          setProfilePhoto(dummyDP);
+        } else {
+          setProfilePhoto(user.photoURL);
+        }
       } else {
         setDisplayName("");
       }
