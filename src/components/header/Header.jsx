@@ -8,10 +8,15 @@ import { GoThreeBars } from "react-icons/go";
 import { HiX } from "react-icons/hi";
 import { MdContactSupport } from "react-icons/md";
 import { TbLogin, TbLogout, TbSearch } from "react-icons/tb";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { dummyDP } from "../../assets";
 import { auth } from "../../firebase/config";
+import {
+  REMOVE_ACTIVE_USER,
+  SET_ACTIVE_USER,
+} from "../../redux/slice/authSlice";
 import "./Header.scss";
 
 const Header = () => {
@@ -22,6 +27,8 @@ const Header = () => {
   const [profilePhoto, setProfilePhoto] = useState();
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const handleScroll = () => {
     const offset = window.scrollY;
     if (offset > 200) {
@@ -45,9 +52,22 @@ const Header = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
-        console.log(user.displayName);
-        setDisplayName(user.displayName);
+        console.log(user);
+        if (user.displayName == null) {
+          const u1 = user.email.substring(0, user.email.indexOf("@"));
+          const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
+          console.log(uName);
+          setDisplayName(uName);
+        } else {
+          setDisplayName(user.displayName);
+        }
+        dispatch(
+          SET_ACTIVE_USER({
+            email: user.email,
+            userName: user.displayName ? user.displayName : displayName,
+            userID: user.uid,
+          })
+        );
         if (user.photoURL === null) {
           setProfilePhoto(dummyDP);
         } else {
@@ -55,9 +75,10 @@ const Header = () => {
         }
       } else {
         setDisplayName("");
+        dispatch(REMOVE_ACTIVE_USER());
       }
     });
-  });
+  }, [dispatch, displayName]);
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   }, []);
