@@ -17,6 +17,7 @@ import {
   REMOVE_ACTIVE_USER,
   SET_ACTIVE_USER,
 } from "../../redux/slice/authSlice";
+import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/HiddenLink";
 import "./Header.scss";
 
 const Header = () => {
@@ -137,22 +138,26 @@ const Header = () => {
                       onClick={() => setToggle(false)}
                       className="close-btn"
                     />
-                    <div className="profile-photo">
-                      <img src={profilePhoto} alt="" />
-                      <p>
-                        Hii,{"  "}
-                        <span>{displayName}</span>
-                      </p>
-                    </div>
+                    <ShowOnLogin>
+                      <div className="profile-photo">
+                        <img src={profilePhoto} alt="" />
+                        <p>
+                          Hii,{"  "}
+                          <span>{displayName}</span>
+                        </p>
+                      </div>
+                    </ShowOnLogin>
                     <ul>
                       <li onClick={handleHomeMenu}>
                         <AiOutlineHome />
                         Home
                       </li>
-                      <li onClick={handleMyOrdersMenu}>
-                        <FaBoxOpen />
-                        My orders
-                      </li>
+                      <ShowOnLogin>
+                        <li onClick={handleMyOrdersMenu}>
+                          <FaBoxOpen />
+                          My orders
+                        </li>
+                      </ShowOnLogin>
                       <li onClick={handleContactMenu}>
                         <MdContactSupport />
                         Contact Us
@@ -161,15 +166,18 @@ const Header = () => {
                         <AiOutlineHeart />
                         Favourite
                       </li> */}
-
-                      <li onClick={handleLoginMenu}>
-                        <TbLogin />
-                        Login
-                      </li>
-                      <li onClick={logoutUser}>
-                        <TbLogout />
-                        Log Out
-                      </li>
+                      <ShowOnLogout>
+                        <li onClick={handleLoginMenu}>
+                          <TbLogin />
+                          Login
+                        </li>
+                      </ShowOnLogout>
+                      <ShowOnLogin>
+                        <li onClick={logoutUser}>
+                          <TbLogout />
+                          Log Out
+                        </li>
+                      </ShowOnLogin>
                     </ul>
                   </div>
                 </>
