@@ -32,6 +32,24 @@
         font-weight: 600;
         text-transform: uppercase;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+          text-transform: uppercase;
+          padding: 5px 7px;
+          font-size: 14px;
+          font-weight: 600;
+          background-color: #8e2de2;
+          border: none;
+          color: white;
+          cursor: pointer;
+          border-radius: 5px;
+          &:hover {
+            background-color: #944bd4;
+            transition: ease-in-out;
+          }
+        }
       }
     }
     .center {
@@ -93,6 +111,12 @@
           display: block;
         }
       }
+      .logout-icon {
+        display: none;
+        @include md {
+          display: block;
+        }
+      }
       .navbar-menu {
         width: 35px;
         height: 35px;
@@ -130,33 +154,6 @@
           background-repeat: repeat;
 
           box-shadow: 0 0 20px rgba(168, 168, 168, 0.15);
-          .close-btn {
-            width: 100px;
-            height: 100px;
-            color: white;
-          }
-          .profile-photo {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 5px;
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            img {
-              margin: 1rem 1.5rem;
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
-            }
-            p {
-              span {
-                text-transform: uppercase;
-              }
-            }
-          }
           ul {
             list-style: none;
             margin: 0;
@@ -176,6 +173,36 @@
               align-items: center;
               text-transform: uppercase;
               cursor: pointer;
+              .close-btn {
+                width: 50%;
+                height: 50%;
+                color: white;
+                display: flex;
+                align-items: right;
+                justify-content: right;
+              }
+              .profile-photo {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 15px;
+                height: 100%;
+                width: 100%;
+                margin: -50px;
+                padding: 0;
+                img {
+                  // margin: 1rem 1.5rem;
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                }
+                p {
+                  span {
+                    text-transform: uppercase;
+                  }
+                }
+              }
               svg {
                 color: white;
                 width: 35px;
@@ -185,6 +212,22 @@
               }
               &:hover {
                 text-decoration: underline;
+              }
+              button {
+                text-transform: uppercase;
+                padding: 5px 7px;
+                font-size: 14px;
+                font-weight: 600;
+                background-color: #8e2de2;
+                border: none;
+                color: white;
+                cursor: pointer;
+                border-radius: 5px;
+                &:hover {
+                  background-color: #944bd4;
+                  transition: ease-in-out;
+                  text-decoration: none;
+                }
               }
             }
           }

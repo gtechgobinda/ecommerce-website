@@ -6,7 +6,7 @@ import { CgShoppingCart } from "react-icons/cg";
 import { FaBoxOpen } from "react-icons/fa";
 import { GoThreeBars } from "react-icons/go";
 import { HiX } from "react-icons/hi";
-import { MdContactSupport } from "react-icons/md";
+import { MdAdminPanelSettings, MdContactSupport } from "react-icons/md";
 import { TbLogin, TbLogout, TbSearch } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ import {
   REMOVE_ACTIVE_USER,
   SET_ACTIVE_USER,
 } from "../../redux/slice/authSlice";
+import AdminOnlyRoute from "../adminOnlyRoute/AdminOnlyRoute";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/HiddenLink";
 import "./Header.scss";
 
@@ -109,23 +110,35 @@ const Header = () => {
             <li>Home</li>
             <li>About</li>
             <li>Categories</li>
+            <li>
+              <AdminOnlyRoute>
+                <button className="admin-btn">Admin</button>
+              </AdminOnlyRoute>
+            </li>
           </ul>
           <div className="center" onClick={() => navigate("/")}>
             GTECHSTORE.
           </div>
           <div className="right">
             <TbSearch onClick={() => setShowSearch(true)} />
-            <FaBoxOpen className="my-orders-icon" />
+            <ShowOnLogin>
+              <FaBoxOpen className="my-orders-icon" />
+            </ShowOnLogin>
             {/* <AiOutlineHeart className="favourite-icon" /> */}
             <MdContactSupport onClick={() => navigate("/contact")} />
             <span className="cart-icon" onClick={() => setShowCart(true)}>
               <CgShoppingCart />
               {<span>5</span>}
             </span>
-            <TbLogin
-              className="login-icon"
-              onClick={() => navigate("/login")}
-            />
+            <ShowOnLogout>
+              <TbLogin
+                className="login-icon"
+                onClick={() => navigate("/login")}
+              />
+            </ShowOnLogout>
+            <ShowOnLogin>
+              <TbLogout className="logout-icon" onClick={logoutUser} />
+            </ShowOnLogin>
             <div className="navbar-menu">
               <GoThreeBars
                 onClick={() => setToggle(true)}
@@ -134,20 +147,29 @@ const Header = () => {
               {toggle && (
                 <>
                   <div className="menu">
-                    <HiX
-                      onClick={() => setToggle(false)}
-                      className="close-btn"
-                    />
-                    <ShowOnLogin>
-                      <div className="profile-photo">
-                        <img src={profilePhoto} alt="" />
-                        <p>
-                          Hii,{"  "}
-                          <span>{displayName}</span>
-                        </p>
-                      </div>
-                    </ShowOnLogin>
                     <ul>
+                      <li>
+                        <HiX
+                          onClick={() => setToggle(false)}
+                          className="close-btn"
+                        />
+                      </li>
+                      <li>
+                        <ShowOnLogin>
+                          <div className="profile-photo">
+                            <img src={profilePhoto} alt="" />
+                            <p>
+                              <span>{displayName}</span>
+                            </p>
+                          </div>
+                        </ShowOnLogin>
+                      </li>
+                      <li>
+                        <AdminOnlyRoute>
+                          <MdAdminPanelSettings />
+                          <button className="admin-btn">Admin</button>
+                        </AdminOnlyRoute>
+                      </li>
                       <li onClick={handleHomeMenu}>
                         <AiOutlineHome />
                         Home
