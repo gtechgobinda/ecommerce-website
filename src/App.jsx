@@ -4,7 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 //components
 import { Footer, Header } from "./components";
 //pages
-import { Contact, Home, Login, Register, Reset } from "./pages";
+import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
+import { Admin, Contact, Home, Login, Register, Reset } from "./pages";
 function App() {
   return (
     <>
@@ -17,6 +18,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset" element={<Reset />} />
+
+          <Route
+            path="/admin/*"
+            element={
+              <AdminOnlyRoute>
+                <Admin />
+              </AdminOnlyRoute>
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

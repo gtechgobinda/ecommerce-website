@@ -1,1 +1,14 @@
 @import "../../css-config/mixins.scss";
+
+.admin {
+  display: flex;
+
+  .navbar {
+    width: 25%;
+    min-height: 80vh;
+  }
+  .content {
+    width: 75%;
+    padding: 1rem;
+  }
+}
