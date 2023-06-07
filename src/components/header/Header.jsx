@@ -9,7 +9,7 @@ import { HiX } from "react-icons/hi";
 import { MdAdminPanelSettings, MdContactSupport } from "react-icons/md";
 import { TbLogin, TbLogout, TbSearch } from "react-icons/tb";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { dummyDP } from "../../assets";
 import { auth } from "../../firebase/config";
@@ -17,7 +17,7 @@ import {
   REMOVE_ACTIVE_USER,
   SET_ACTIVE_USER,
 } from "../../redux/slice/authSlice";
-import AdminOnlyRoute from "../adminOnlyRoute/AdminOnlyRoute";
+import { AdminOnlyLink } from "../adminOnlyRoute/AdminOnlyRoute";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/HiddenLink";
 import "./Header.scss";
 
@@ -111,9 +111,11 @@ const Header = () => {
             <li>About</li>
             <li>Categories</li>
             <li>
-              <AdminOnlyRoute>
-                <button className="admin-btn">Admin</button>
-              </AdminOnlyRoute>
+              <AdminOnlyLink>
+                <Link to="/admin/home">
+                  <button className="admin-btn">Admin</button>
+                </Link>
+              </AdminOnlyLink>
             </li>
           </ul>
           <div className="center" onClick={() => navigate("/")}>
@@ -165,10 +167,12 @@ const Header = () => {
                         </ShowOnLogin>
                       </li>
                       <li>
-                        <AdminOnlyRoute>
+                        <AdminOnlyLink>
                           <MdAdminPanelSettings />
-                          <button className="admin-btn">Admin</button>
-                        </AdminOnlyRoute>
+                          <Link to="/admin/home">
+                            <button className="admin-btn">Admin</button>
+                          </Link>
+                        </AdminOnlyLink>
                       </li>
                       <li onClick={handleHomeMenu}>
                         <AiOutlineHome />

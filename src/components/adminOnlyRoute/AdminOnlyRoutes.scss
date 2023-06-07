@@ -1,0 +1,25 @@
+@import "../../css-config/mixins.scss";
+.section {
+  height: 80vh;
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding-left: 20px;
+
+    .btn {
+      width: fit-content;
+      padding: 10px 20px;
+      background-color: #8e2de2;
+      color: white;
+      border: none;
+      font-size: 15px;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover {
+        background-color: #944bd4;
+        transition: ease-in-out;
+      }
+    }
+  }
+}
