@@ -1,1 +1,51 @@
 @import "../../../css-config/mixins.scss";
+
+.product {
+  h1 {
+    padding-bottom: 10px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    label {
+    }
+    input {
+    }
+    button {
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #8e2de2;
+      color: white;
+      border: none;
+      font-size: 15px;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover {
+        background-color: #944bd4;
+        transition: ease-in-out;
+      }
+    }
+
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid black;
+      padding: 10px;
+      .progress {
+        display: flex;
+        flex-direction: column;
+        background-color: #aaa;
+        border-radius: 4px;
+        .progress-bar {
+          display: flex;
+          flex-direction: column;
+          // background-color: skyblue;
+          padding: 5px 10px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

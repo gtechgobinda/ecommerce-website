@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Orders, ViewProducts } from "../../components";
+import { AddProduct, Orders, ViewProducts } from "../../components";
 import Navbar from "../../components/admin/navbar/Navbar";
 import Home from "../home/Home";
 import "./Admin.scss";
@@ -14,6 +14,7 @@ const Admin = () => {
           <Routes>
             <Route path="home" element={<Home />} />
             <Route path="all-products" element={<ViewProducts />} />
+            <Route path="add-product" element={<AddProduct />} />
             <Route path="orders" element={<Orders />} />
           </Routes>
         </div>
