@@ -5,12 +5,12 @@ import { getStorage } from "firebase/storage";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBKCR3rza_aynrqWAFQ4X1twJyzbwBx45w",
-  authDomain: "ecommerce-website-62135.firebaseapp.com",
-  projectId: "ecommerce-website-62135",
-  storageBucket: "ecommerce-website-62135.appspot.com",
-  messagingSenderId: "134026715566",
-  appId: "1:134026715566:web:f809b2788db2ba04fd283f"
+  apiKey: "AIzaSyCJ7jWu4YWaxpiz-mQHmlmyf0gVBz-OO4c",
+  authDomain: "ecommerce-website1-41753.firebaseapp.com",
+  projectId: "ecommerce-website1-41753",
+  storageBucket: "ecommerce-website1-41753.appspot.com",
+  messagingSenderId: "706114381089",
+  appId: "1:706114381089:web:2793665ad4505583c88a60"
 };
 
 const app = initializeApp(firebaseConfig);

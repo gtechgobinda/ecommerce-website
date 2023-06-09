@@ -1,4 +1,6 @@
+import { ref, uploadBytesResumable } from "firebase/storage";
 import { useState } from "react";
+import { storage } from "../../../firebase/config.js";
 import Card from "../../card/Card";
 import "./AddProduct.scss";
 
@@ -13,7 +15,7 @@ const AddProduct = () => {
   const [product, setProduct] = useState({
     name: "",
     imageURL: "",
-    price: null,
+    price: 0,
     category: "",
     brand: "",
     desc: "",
@@ -22,7 +24,12 @@ const AddProduct = () => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
-  const handleImageChange = (e) => {};
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    // console.log(file);
+    const storageRef = ref(storage, `gtechstore/${Date.now()}${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+  };
 
   const addProduct = (e) => {
     e.preventDefault();
