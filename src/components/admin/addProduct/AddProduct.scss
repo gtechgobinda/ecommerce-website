@@ -36,14 +36,15 @@
       .progress {
         display: flex;
         flex-direction: column;
-        background-color: #aaa;
+        background-color: #cfcccc;
         border-radius: 4px;
         .progress-bar {
           display: flex;
           flex-direction: column;
-          // background-color: skyblue;
+          background-color: #8e2de2;
           padding: 5px 10px;
           border-radius: 4px;
+          color: white;
         }
       }
     }

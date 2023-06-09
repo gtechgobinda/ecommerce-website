@@ -1,5 +1,6 @@
-import { ref, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { storage } from "../../../firebase/config.js";
 import Card from "../../card/Card";
 import "./AddProduct.scss";
@@ -20,6 +21,8 @@ const AddProduct = () => {
     brand: "",
     desc: "",
   });
+  const [uploadProgress, setUploadProgress] = useState(0);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
@@ -29,6 +32,34 @@ const AddProduct = () => {
     // console.log(file);
     const storageRef = ref(storage, `gtechstore/${Date.now()}${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        // console.log("Upload is " + progress + "% done");
+        setUploadProgress(progress);
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+        }
+      },
+      (error) => {
+        toast.error(error.message);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setProduct({ ...product, imageURL: downloadURL });
+          toast.success("Image upload successfully");
+          // console.log("File available at", downloadURL);
+        });
+      }
+    );
   };
 
   const addProduct = (e) => {
@@ -52,9 +83,18 @@ const AddProduct = () => {
             />
             <label>Product Image:</label>
             <Card cardClass="group">
-              <div className="progress">
-                <div className="progress-bar">Uploading 50%</div>
-              </div>
+              {uploadProgress === 0 ? null : (
+                <div className="progress">
+                  <div
+                    className="progress-bar"
+                    style={{ width: `${uploadProgress}%` }}
+                  >
+                    {uploadProgress < 100
+                      ? `Uploading ${uploadProgress}%`
+                      : `Upload Complete ${uploadProgress}%`}
+                  </div>
+                </div>
+              )}
               <input
                 type="file"
                 placeholder="Product Image"
@@ -62,14 +102,16 @@ const AddProduct = () => {
                 name="image"
                 onChange={(e) => handleImageChange(e)}
               />
-              <input
-                type="text"
-                name="imageURL"
-                placeholder="Image URL"
-                value={product.imageURL}
-                disabled
-                // required
-              />
+              {product.imageURL === "" ? null : (
+                <input
+                  type="text"
+                  name="imageURL"
+                  placeholder="Image URL"
+                  value={product.imageURL}
+                  disabled
+                  // required
+                />
+              )}
             </Card>
             <label>Product Price:</label>
             <input
