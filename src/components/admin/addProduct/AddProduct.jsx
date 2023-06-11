@@ -1,28 +1,35 @@
+import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { storage } from "../../../firebase/config.js";
+import { db, storage } from "../../../firebase/config.js";
 import Card from "../../card/Card";
+import { Loader } from "../../index.js";
 import "./AddProduct.scss";
 
 const categories = [
-  { id: 1, name: "Category 1" },
-  { id: 2, name: "Category 2" },
-  { id: 3, name: "Category 3" },
-  { id: 4, name: "Category 4" },
+  { id: 1, name: "headphones" },
+  { id: 2, name: "wireless earbuds" },
+  { id: 3, name: "bluetooth speakers" },
+  { id: 4, name: "smart watches" },
 ];
-
+const initailState = {
+  name: "",
+  imageURL: "",
+  price: 0,
+  category: "",
+  brand: "",
+  desc: "",
+};
 const AddProduct = () => {
   const [product, setProduct] = useState({
-    name: "",
-    imageURL: "",
-    price: 0,
-    category: "",
-    brand: "",
-    desc: "",
+    ...initailState,
   });
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
@@ -64,10 +71,32 @@ const AddProduct = () => {
 
   const addProduct = (e) => {
     e.preventDefault();
-    console.log(product);
+    // console.log(product);
+    setIsLoading(true);
+
+    try {
+      const docRef = addDoc(collection(db, "products"), {
+        name: product.name,
+        imageURL: product.imageURL,
+        price: Number(product.price),
+        category: product.category,
+        brand: product.brand,
+        desc: product.desc,
+        createdAt: Timestamp.now().toDate(),
+      });
+      setIsLoading(false);
+      setUploadProgress(0);
+      setProduct({ ...initailState });
+      toast.success("Product uploaded successfully");
+      navigate("/admin/all-products");
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+    }
   };
   return (
     <>
+      {isLoading && <Loader />}
       <div className="product">
         <h1>Add New Product</h1>
         <Card cardClass="card">
@@ -101,6 +130,7 @@ const AddProduct = () => {
                 accept="image/*"
                 name="image"
                 onChange={(e) => handleImageChange(e)}
+                required
               />
               {product.imageURL === "" ? null : (
                 <input
@@ -109,7 +139,7 @@ const AddProduct = () => {
                   placeholder="Image URL"
                   value={product.imageURL}
                   disabled
-                  // required
+                  required
                 />
               )}
             </Card>
