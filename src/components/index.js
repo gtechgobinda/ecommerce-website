@@ -1,4 +1,6 @@
 export { default as AddProduct } from "./admin/addProduct/AddProduct.jsx";
+export { default as Home } from "./admin/home/Home.jsx";
+export { default as Navbar } from "./admin/navbar/Navbar.jsx";
 export { default as Orders } from "./admin/orders/Orders.jsx";
 export { default as ViewProducts } from "./admin/viewProducts/ViewProducts.jsx";
 export { default as Banner } from "./banner/Banner.jsx";

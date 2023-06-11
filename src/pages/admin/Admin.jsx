@@ -1,7 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import { AddProduct, Orders, ViewProducts } from "../../components";
-import Navbar from "../../components/admin/navbar/Navbar";
-import Home from "../home/Home";
+import {
+  AddProduct,
+  Home,
+  Navbar,
+  Orders,
+  ViewProducts,
+} from "../../components";
+
 import "./Admin.scss";
 const Admin = () => {
   return (
