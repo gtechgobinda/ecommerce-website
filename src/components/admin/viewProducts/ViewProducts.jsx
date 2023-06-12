@@ -127,7 +127,7 @@ const ViewProducts = () => {
                       <td>{category}</td>
                       <td>{`₹${price}`}</td>
                       <td className="icons">
-                        <Link to="/admin/add-product">
+                        <Link to={`/admin/add-product/${id}`}>
                           <BiEdit size={20} color="green" />
                         </Link>
                         &nbsp;
