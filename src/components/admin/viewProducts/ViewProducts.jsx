@@ -11,14 +11,19 @@ import Notiflix from "notiflix";
 import { useEffect, useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import { MdDeleteForever } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db, storage } from "../../../firebase/config.js";
+import { STORE_PRODUCTS } from "../../../redux/slice/productSlice.jsx";
 import { Loader } from "../../index.js";
 import "./ViewProducts.scss";
+
 const ViewProducts = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getProducts();
@@ -37,6 +42,11 @@ const ViewProducts = () => {
         console.log(allProducts);
         setProducts(allProducts);
         setIsLoading(false);
+        dispatch(
+          STORE_PRODUCTS({
+            products: allProducts,
+          })
+        );
       });
     } catch (error) {
       setIsLoading(false);
