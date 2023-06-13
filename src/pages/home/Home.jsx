@@ -1,4 +1,4 @@
-import { Banner, MiniNavbar } from "../../components";
+import { Banner, MiniNavbar, Product } from "../../components";
 // import AdminOnlyRoute from "../../components/adminOnlyRoute/AdminOnlyRoute";
 import "./Home.scss";
 const Home = () => {
@@ -6,8 +6,7 @@ const Home = () => {
     <>
       <MiniNavbar />
       <Banner />
-      <h1>Home Page</h1>
-      {/* <AdminOnlyRoute /> */}
+      <Product />
     </>
   );
 };

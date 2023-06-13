@@ -5,19 +5,31 @@
   padding: 10px 14px;
   .navbar-content {
     .left {
-      list-style-type: none;
+      display: flex;
       gap: 12px;
-      @include md {
-        display: flex;
+      .left-ul {
+        list-style-type: none;
+        gap: 12px;
+        @include md {
+          display: flex;
+        }
+        li {
+          font-size: 14px;
+          font-weight: 600;
+          text-transform: uppercase;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
-      li {
-        font-size: 14px;
-        font-weight: 600;
-        text-transform: uppercase;
-        cursor: pointer;
+      .product-filter {
         display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
+        gap: 5px;
+        cursor: pointer;
       }
     }
   }

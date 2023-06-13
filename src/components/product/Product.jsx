@@ -1,7 +1,9 @@
+import { ProductList } from "../index.js";
+import "./Product.scss";
 const Product = () => {
   return (
     <>
-      <div>Product</div>
+      <ProductList />
     </>
   );
 };

@@ -8,4 +8,9 @@ export { default as Footer } from "./footer/Footer.jsx";
 export { default as Header } from "./header/Header.jsx";
 export { default as Loader } from "./loader/Loader.jsx";
 export { default as MiniNavbar } from "./miniNavbar/MiniNavbar.jsx";
+export { default as Product } from "./product/Product.jsx";
+export { default as ProductDetails } from "./product/productDetails/ProductDetails.jsx";
+export { default as ProductFilter } from "./product/productFilter/ProductFilter.jsx";
+export { default as ProductItem } from "./product/productItem/ProductItem.jsx";
+export { default as ProductList } from "./product/productList/ProductList.jsx";
 
