@@ -19,6 +19,18 @@ const MiniNavbar = () => {
               <BsFillCaretDownFill />
             </div>
           </div>
+          <div className="right">
+            <div className="sort">
+              <label>Sort by:</label>
+              <select>
+                <option value="latest">Latest</option>
+                <option value="lowest-price">Lowest Price</option>
+                <option value="highest-price">Highest Price</option>
+                <option value="a-z">A - Z</option>
+                <option value="z-z">A - Z</option>
+              </select>
+            </div>
+          </div>
         </div>
       </header>
       <hr />
