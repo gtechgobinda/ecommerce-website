@@ -19,6 +19,7 @@ import {
 } from "../../redux/slice/authSlice";
 import { AdminOnlyLink } from "../adminOnlyRoute/AdminOnlyRoute";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/HiddenLink";
+import { Search } from "../index.js";
 import "./Header.scss";
 
 const Header = () => {
@@ -212,6 +213,7 @@ const Header = () => {
           </div>
         </div>
       </header>
+      {showSearch && <Search setShowSearch={setShowSearch} />}
     </>
   );
 };
