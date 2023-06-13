@@ -1,0 +1,24 @@
+@import "../../css-config/mixins.scss";
+.mini-navbar {
+  background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: white;
+  padding: 10px 14px;
+  .navbar-content {
+    .left {
+      list-style-type: none;
+      gap: 12px;
+      @include md {
+        display: flex;
+      }
+      li {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
