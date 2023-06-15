@@ -5,7 +5,7 @@ import {
   selectProducts,
 } from "../../redux/slice/productSlice.jsx";
 import useFetchCollection from "../customHooks/useFetchCollection.jsx";
-import { ProductList } from "../index.js";
+import { Loader, ProductList } from "../index.js";
 import "./Product.scss";
 const Product = () => {
   const { data, isLoading } = useFetchCollection("products");
@@ -21,7 +21,17 @@ const Product = () => {
   }, [dispatch, data]);
   return (
     <>
-      <ProductList products={products} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="main-content">
+            <div className="layout">
+              <ProductList products={products} />
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
