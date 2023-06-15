@@ -51,4 +51,24 @@
       }
     }
   }
+  .addToCartButton {
+    width: 100%;
+    background-color: #8e2de2;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 10px;
+    @include md {
+      padding: 10px 20px;
+      font-size: 15px;
+      margin-top: 5px;
+    }
+
+    &:hover {
+      background-color: #944bd4;
+      transition: ease-in-out;
+    }
+  }
 }

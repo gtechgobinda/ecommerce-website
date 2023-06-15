@@ -1,9 +1,15 @@
 @import "../../css-config/mixins.scss";
-
-.main-content {
-  max-width: calc(100% - 20px);
-  margin: 0 auto;
+.products-container {
+  margin: 50px 15px;
   @include md {
-    max-width: 1200px;
+    margin: 75px 70px;
+  }
+  .products {
+    display: flex;
+    flex-flow: wrap;
+    gap: 10px;
+    @include md {
+      gap: 20px;
+    }
   }
 }

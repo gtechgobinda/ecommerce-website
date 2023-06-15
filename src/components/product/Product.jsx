@@ -25,8 +25,8 @@ const Product = () => {
         <Loader />
       ) : (
         <>
-          <div className="main-content">
-            <div className="layout">
+          <div className="products-container">
+            <div className="products">
               <ProductList products={products} />
             </div>
           </div>

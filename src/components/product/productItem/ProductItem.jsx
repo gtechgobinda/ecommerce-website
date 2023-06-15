@@ -5,13 +5,7 @@ const ProductItem = ({ product, id, name, price, desc, imageURL }) => {
   const onClickProduct = () => {
     navigate("/product-details");
   };
-  const shortenText = (text, n) => {
-    if (text.length > 15) {
-      const shortenedText = text.substring(0, 15).concat("...");
-      return shortenedText;
-    }
-    return text;
-  };
+
   return (
     <>
       <div className="product-card">
@@ -19,9 +13,10 @@ const ProductItem = ({ product, id, name, price, desc, imageURL }) => {
           <img src={imageURL} alt="" onClick={onClickProduct} />
         </div>
         <div className="prod-details">
-          <span className="name">{shortenText(name, 18)}</span>
+          <span className="name">{name}</span>
           <span className="price">&#8377;{price}</span>
         </div>
+        <button className="addToCartButton">Add To Cart</button>
       </div>
     </>
   );
