@@ -3,7 +3,7 @@ import "./ProductItem.scss";
 const ProductItem = ({ product, id, name, price, desc, imageURL }) => {
   const navigate = useNavigate();
   const onClickProduct = () => {
-    navigate("/product-details");
+    navigate(`/product-details/${id}`);
   };
 
   return (
