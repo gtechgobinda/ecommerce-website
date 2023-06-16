@@ -13,4 +13,5 @@ export { default as ProductFilter } from "./product/productFilter/ProductFilter.
 export { default as ProductItem } from "./product/productItem/ProductItem.jsx";
 export { default as ProductList } from "./product/productList/ProductList.jsx";
 export { default as Search } from "./search/Search.jsx";
+export { default as Search1 } from "./search/Search1.jsx";
 
