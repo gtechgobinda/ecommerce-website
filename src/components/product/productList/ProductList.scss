@@ -40,6 +40,17 @@
     .right {
       display: flex;
       flex-direction: row;
+      .sort {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        select {
+          border: none;
+          outline: none;
+          padding: 3px 5px;
+        }
+      }
     }
   }
 }
