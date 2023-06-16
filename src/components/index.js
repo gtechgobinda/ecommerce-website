@@ -7,7 +7,6 @@ export { default as Banner } from "./banner/Banner.jsx";
 export { default as Footer } from "./footer/Footer.jsx";
 export { default as Header } from "./header/Header.jsx";
 export { default as Loader } from "./loader/Loader.jsx";
-export { default as MiniNavbar } from "./miniNavbar/MiniNavbar.jsx";
 export { default as Product } from "./product/Product.jsx";
 export { default as ProductDetails } from "./product/productDetails/ProductDetails.jsx";
 export { default as ProductFilter } from "./product/productFilter/ProductFilter.jsx";

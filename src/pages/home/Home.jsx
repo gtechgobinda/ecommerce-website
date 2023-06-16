@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Banner, MiniNavbar, Product } from "../../components";
+import { Banner, Product } from "../../components";
 // import AdminOnlyRoute from "../../components/adminOnlyRoute/AdminOnlyRoute";
 import "./Home.scss";
 const Home = () => {
@@ -21,7 +21,6 @@ const Home = () => {
 
   return (
     <>
-      <MiniNavbar />
       <Banner />
       <Product />
     </>
