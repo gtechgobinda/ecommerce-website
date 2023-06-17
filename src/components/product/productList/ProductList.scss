@@ -1,6 +1,7 @@
 @import "../../../css-config/mixins.scss";
 .mini-navbar {
-  background-color: rgba(0, 0, 0, 0.05);
+  // background-color: rgba(0, 0, 0, 0.05);
+  background-color: #bebebe;
   color: black;
   padding: 10px 14px;
   width: 100%;
@@ -9,34 +10,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    .left {
-      display: flex;
-      gap: 12px;
-      .left-ul {
-        list-style-type: none;
-        gap: 12px;
-        @include md {
-          display: flex;
-        }
-        li {
-          font-size: 14px;
-          font-weight: 600;
-          text-transform: uppercase;
-          cursor: pointer;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-      .product-filter {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        cursor: pointer;
-      }
-    }
+
     .right {
       display: flex;
       flex-direction: row;

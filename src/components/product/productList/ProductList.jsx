@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { BsFillCaretDownFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FILTER_BY_SEARCH,
@@ -25,7 +24,7 @@ const ProductList = ({ products }) => {
       <hr className="hr" />
       <header className="mini-navbar">
         <div className="navbar-content">
-          <div className="left">
+          {/* <div className="left">
             <ul className="left-ul">
               <li>All</li>
               <li>Headphones</li>
@@ -37,6 +36,9 @@ const ProductList = ({ products }) => {
               <ProductFilter />
               <BsFillCaretDownFill />
             </div>
+          </div> */}
+          <div className="left">
+            <ProductFilter />
           </div>
           <div className="middle">
             <Search1
