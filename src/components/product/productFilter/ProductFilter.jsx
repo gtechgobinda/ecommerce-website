@@ -1,8 +1,23 @@
 import { useState } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { FILTER_BY_CATEGORY } from "../../../redux/slice/filterSlice";
+import { selectProducts } from "../../../redux/slice/productSlice";
 import "./ProductFilter.scss";
 const ProductFilter = () => {
   const [toggle, setToogle] = useState(false);
+  const [category, setCategory] = useState("All");
+  const products = useSelector(selectProducts);
+  const dispatch = useDispatch();
+  const allCategories = [
+    "All",
+    ...new Set(products.map((product) => product.category)),
+  ];
+  console.log(allCategories);
+  const filterProducts = (cat) => {
+    setCategory(cat);
+    dispatch(FILTER_BY_CATEGORY({ products, category: cat }));
+  };
   return (
     <>
       <ul>
@@ -22,10 +37,22 @@ const ProductFilter = () => {
                   <div className="filter-dropdown-grid-child child1">
                     <h4>CATEGORIES</h4>
                     <div className="category">
-                      <button>All</button>
-                      <button>Headphones</button>
-                      <button>Speakers</button>
-                      <button>Watches</button>
+                      {allCategories.map((cat, index) => {
+                        return (
+                          <>
+                            <button
+                              key={index}
+                              type="button"
+                              // className={
+                              //   `${category}` === cat ? `${active}` : null
+                              // }
+                              onClick={() => filterProducts(cat)}
+                            >
+                              {cat}
+                            </button>
+                          </>
+                        );
+                      })}
                     </div>
                   </div>
                   <div className="filter-dropdown-grid-child child2">
