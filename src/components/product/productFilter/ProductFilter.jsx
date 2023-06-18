@@ -1,19 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { FILTER_BY_CATEGORY } from "../../../redux/slice/filterSlice";
+import {
+  FILTER_BY_BRAND,
+  FILTER_BY_CATEGORY,
+} from "../../../redux/slice/filterSlice";
 import { selectProducts } from "../../../redux/slice/productSlice";
 import "./ProductFilter.scss";
 const ProductFilter = () => {
   const [toggle, setToogle] = useState(false);
   const [category, setCategory] = useState("All");
+  const [brand, setBrand] = useState("All");
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
   const allCategories = [
     "All",
     ...new Set(products.map((product) => product.category)),
   ];
-  console.log(allCategories);
+  const allBrands = [
+    "All",
+    ...new Set(products.map((product) => product.brand)),
+  ];
+  console.log(allBrands);
+  useEffect(() => {
+    dispatch(FILTER_BY_BRAND({ products, brand }));
+  }, [dispatch, products, brand]);
+
   const filterProducts = (cat) => {
     setCategory(cat);
     dispatch(FILTER_BY_CATEGORY({ products, category: cat }));
@@ -57,11 +69,19 @@ const ProductFilter = () => {
                   </div>
                   <div className="filter-dropdown-grid-child child2">
                     <h4>BRAND</h4>
-                    <select name="brand">
-                      <option value="boat">boat</option>
-                      <option value="samsung">samsung</option>
-                      <option value="sony">sony</option>
-                      <option value="realme">realme</option>
+                    <select
+                      name={brand}
+                      onChange={(e) => setBrand(e.target.value)}
+                    >
+                      {allBrands.map((brand, index) => {
+                        return (
+                          <>
+                            <option key={index} value={brand}>
+                              {brand}
+                            </option>
+                          </>
+                        );
+                      })}
                     </select>
                   </div>
                   <div className="filter-dropdown-grid-child child3">
