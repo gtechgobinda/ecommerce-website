@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  GET_PRICE_RANGE,
   STORE_PRODUCTS,
   selectProducts,
 } from "../../redux/slice/productSlice.jsx";
@@ -15,6 +16,11 @@ const Product = () => {
   useEffect(() => {
     dispatch(
       STORE_PRODUCTS({
+        products: data,
+      })
+    );
+    dispatch(
+      GET_PRICE_RANGE({
         products: data,
       })
     );
