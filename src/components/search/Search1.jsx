@@ -1,8 +1,8 @@
 import { BiSearch } from "react-icons/bi";
 import "./Search1.scss";
-const Search = ({ value, onChange }) => {
+const Search1 = ({ value, onChange }) => {
   return (
-    <div className="search">
+    <div className="search1">
       <BiSearch size={18} className="icon" />
       <input
         type="text"
@@ -14,4 +14,4 @@ const Search = ({ value, onChange }) => {
   );
 };
 
-export default Search;
+export default Search1;

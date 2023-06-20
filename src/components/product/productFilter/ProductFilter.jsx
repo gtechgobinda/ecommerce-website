@@ -82,6 +82,24 @@ const ProductFilter = () => {
                           </>
                         );
                       })}
+                      {/* <select
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                      >
+                        {allCategories.map((cat, index) => {
+                          return (
+                            <>
+                              <option
+                                key={index}
+                                value={cat}
+                                onClick={() => filterProducts(cat)}
+                              >
+                                {cat}
+                              </option>
+                            </>
+                          );
+                        })}
+                      </select> */}
                     </div>
                   </div>
                   <div className="filter-dropdown-grid-child child2">

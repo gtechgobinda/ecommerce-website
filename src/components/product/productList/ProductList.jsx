@@ -5,7 +5,8 @@ import {
   SORT_PRODUCTS,
   selectFilteredProducts,
 } from "../../../redux/slice/filterSlice.jsx";
-import { ProductFilter, ProductItem, Search1 } from "../../index.js";
+// import { ProductFilter, ProductItem, Search1 } from "../../index.js";
+import { ProductFilter, ProductItem, Search, Search1 } from "../../index.js";
 import "./ProductList.scss";
 
 const ProductList = ({ products }) => {
@@ -24,24 +25,11 @@ const ProductList = ({ products }) => {
       <hr className="hr" />
       <header className="mini-navbar">
         <div className="navbar-content">
-          {/* <div className="left">
-            <ul className="left-ul">
-              <li>All</li>
-              <li>Headphones</li>
-              <li>Earbuds</li>
-              <li>Speakers</li>
-              <li>Watchs</li>
-            </ul>
-            <div className="product-filter">
-              <ProductFilter />
-              <BsFillCaretDownFill />
-            </div>
-          </div> */}
           <div className="left">
             <ProductFilter />
           </div>
           <div className="middle">
-            <Search1
+            <Search
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -58,6 +46,9 @@ const ProductList = ({ products }) => {
               </select>
             </div>
           </div>
+        </div>
+        <div className="searchForMobile">
+          <Search1 value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
       </header>
       <p className="foundProduct">
