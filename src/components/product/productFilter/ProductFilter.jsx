@@ -52,7 +52,7 @@ const ProductFilter = () => {
       <ul>
         <li>
           <div className="filter">
-            <p>FILTER</p>
+            <p onClick={() => setToogle(true)}>FILTER</p>
             {toggle === true ? (
               <AiFillCaretUp onClick={() => setToogle(false)} />
             ) : (
