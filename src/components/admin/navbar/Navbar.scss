@@ -31,17 +31,14 @@
         a {
           text-decoration: none;
           font-size: 20px;
-          &:active {
-            cursor: pointer;
-          }
-          &:active::before {
+          &.active::before {
             content: "";
             position: absolute;
             right: 0;
             top: 0;
-            width: 4px;
+            width: 5px;
             height: 100%;
-            background-color: orangered;
+            background-color: #8e2de2;
           }
         }
       }
