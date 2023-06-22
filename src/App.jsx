@@ -5,7 +5,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { Footer, Header, ProductDetails } from "./components";
 //pages
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
-import { Admin, Cart, Contact, Home, Login, Register, Reset } from "./pages";
+import {
+  Admin,
+  Cart,
+  Checkout,
+  Contact,
+  Home,
+  Login,
+  Register,
+  Reset,
+} from "./pages";
 import CheckoutDeatils from "./pages/checkout/checkoutDetails/CheckoutDeatils";
 function App() {
   return (
@@ -31,6 +40,7 @@ function App() {
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-details" element={<CheckoutDeatils />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />
       </BrowserRouter>
