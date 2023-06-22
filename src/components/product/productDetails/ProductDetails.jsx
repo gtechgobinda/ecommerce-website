@@ -9,9 +9,16 @@ import {
   FaPinterest,
   FaTwitter,
 } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db } from "../../../firebase/config.js";
+import {
+  ADD_TO_CART,
+  CALCULATE_TOTAL_QUANTITY,
+  DECREASE_CART,
+  selectCartItems,
+} from "../../../redux/slice/cartSlice.jsx";
 import { Loader } from "../../index.js";
 import "./ProductDetails.scss";
 
@@ -19,9 +26,17 @@ const ProductDetails = () => {
   const { id } = useParams();
   console.log(id);
   const [product, setProduct] = useState("");
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+
+  const cart = cartItems.find((cart) => cart.id === id);
+  const isCartAdded = cartItems.findIndex((cart) => {
+    return cart.id === id;
+  });
   useEffect(() => {
     getProduct();
   }, []);
+
   const getProduct = async () => {
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
@@ -36,6 +51,18 @@ const ProductDetails = () => {
     } else {
       toast.error("Product not found");
     }
+  };
+  const addToCart = (product) => {
+    dispatch(ADD_TO_CART(product));
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  };
+  const decreaseCart = (product) => {
+    dispatch(DECREASE_CART(product));
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  };
+  const increaseCart = (product) => {
+    dispatch(ADD_TO_CART(product));
+    dispatch(CALCULATE_TOTAL_QUANTITY());
   };
   return (
     <>
@@ -63,12 +90,19 @@ const ProductDetails = () => {
 
               <div className="cart-buttons">
                 <div className="quantity-buttons">
-                  <span>-</span>
-                  <span>5</span>
-                  <span>+</span>
+                  {isCartAdded < 0 ? null : (
+                    <>
+                      <span onClick={() => decreaseCart(product)}>-</span>
+                      <span>{cart.cartQuantity}</span>
+                      <span onClick={() => increaseCart(product)}>+</span>
+                    </>
+                  )}
                 </div>
 
-                <button className="add-to-cart-button">
+                <button
+                  className="add-to-cart-button"
+                  onClick={() => addToCart(product)}
+                >
                   <FaCartPlus size={20} />
                   ADD TO CART
                 </button>
