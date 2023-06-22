@@ -129,7 +129,7 @@ const Header = () => {
             </ShowOnLogin>
             {/* <AiOutlineHeart className="favourite-icon" /> */}
             <MdContactSupport onClick={() => navigate("/contact")} />
-            <span className="cart-icon" onClick={() => setShowCart(true)}>
+            <span className="cart-icon" onClick={() => navigate("/cart")}>
               <CgShoppingCart />
               {<span>5</span>}
             </span>

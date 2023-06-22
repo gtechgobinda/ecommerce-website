@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Footer, Header, ProductDetails } from "./components";
 //pages
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
-import { Admin, Contact, Home, Login, Register, Reset } from "./pages";
+import { Admin, Cart, Contact, Home, Login, Register, Reset } from "./pages";
 function App() {
   return (
     <>
@@ -28,6 +28,7 @@ function App() {
             }
           />
           <Route path="/product-details/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </BrowserRouter>
