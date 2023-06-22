@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { BsCartX } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   ADD_TO_CART,
+  CALCULATE_SUBTOTAL,
+  CALCULATE_TOTAL_QUANTITY,
   CLEAR_CART,
   DECREASE_CART,
   REMOVE_FROM_CART,
@@ -33,6 +36,11 @@ const Cart = () => {
   const clearCart = (cart) => {
     dispatch(CLEAR_CART(cart));
   };
+  useEffect(() => {
+    dispatch(CALCULATE_SUBTOTAL());
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  }, [dispatch, cartItems]);
+
   return (
     <>
       <section>
@@ -95,11 +103,13 @@ const Cart = () => {
                 </button>
               </div>
               <div className="cart-footer">
-                <p className="cart-items">{`Cart item(s): ${cartTotalQuantity}`}</p>
+                <p className="cart-items">
+                  Cart item(s): <b>{`${cartTotalQuantity}`}</b>
+                </p>
                 <div className="subtotal">
                   <span className="text">Subtotal:</span>
                   <span className="text total">
-                    &#8377;{cartTotalQuantity.toFixed(2)}
+                    &#8377;{cartTotalAmount.toFixed(2)}
                   </span>
                 </div>
                 <div className="button">
