@@ -20,7 +20,7 @@ const CheckoutDeatils = () => {
   const [billingAddress, setBillingAddress] = useState({
     ...initialAddressState,
   });
-
+  const [sameAddress, setSameAddress] = useState(false);
   const handleShipping = (e) => {
     const { name, value } = e.target;
     setShippingAddress({
@@ -40,6 +40,12 @@ const CheckoutDeatils = () => {
     console.log(shippingAddress);
     console.log(billingAddress);
   };
+  const handleSameAddressChange = () => {
+    setSameAddress(!sameAddress);
+    if (!sameAddress) {
+      setBillingAddress(shippingAddress);
+    }
+  };
   return (
     <>
       <div className="checkout-container">
@@ -47,7 +53,9 @@ const CheckoutDeatils = () => {
         <form onSubmit={handleSubmit}>
           <div className="shipping-address">
             <h3>Shipping Address:</h3>
-            <label>Recipient Name</label>
+            <label>
+              Recipient Name<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="Recipient Name"
@@ -56,7 +64,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleShipping(e)}
               required
             />
-            <label>Address Line 1:</label>
+            <label>
+              Address Line 1<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="Address Line 1"
@@ -65,7 +75,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleShipping(e)}
               required
             />
-            <label>Address Line 2:</label>
+            <label>
+              Address Line 2<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="Address Line 2"
@@ -74,7 +86,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleShipping(e)}
               required
             />
-            <label>City:</label>
+            <label>
+              City<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="City"
@@ -83,7 +97,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleShipping(e)}
               required
             />
-            <label>State:</label>
+            <label>
+              State<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="State"
@@ -92,7 +108,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleShipping(e)}
               required
             />
-            <label>Postal Code:</label>
+            <label>
+              Postal Code<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="Postal Code"
@@ -101,9 +119,11 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleShipping(e)}
               required
             />
-            <label>Country:</label>
+            <label>
+              Country<span className="star">*</span>
+            </label>
             <CountryDropdown
-              classes="select"
+              className="select"
               valueType="short"
               value={shippingAddress.country}
               onChange={(val) =>
@@ -115,7 +135,9 @@ const CheckoutDeatils = () => {
                 })
               }
             />
-            <label>Phone:</label>
+            <label>
+              Phone<span className="star">*</span>
+            </label>
             <input
               type="number"
               placeholder="Phone"
@@ -126,12 +148,19 @@ const CheckoutDeatils = () => {
             />
           </div>
           <div className="checkbox">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={sameAddress}
+              onChange={handleSameAddressChange}
+              disabled={sameAddress}
+            />
             <p>Billing and shipping address same?</p>
           </div>
           <div className="billing-address">
             <h3>Billing Address:</h3>
-            <label>Recipient Name</label>
+            <label>
+              Recipient Name<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="Recipient Name"
@@ -140,7 +169,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleBilling(e)}
               required
             />
-            <label>Address Line 1:</label>
+            <label>
+              Address Line 1<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="Address Line 1"
@@ -149,7 +180,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleBilling(e)}
               required
             />
-            <label>Address Line 2:</label>
+            <label>
+              Address Line 2<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="Address Line 2"
@@ -158,7 +191,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleBilling(e)}
               required
             />
-            <label>City:</label>
+            <label>
+              City<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="City"
@@ -167,7 +202,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleBilling(e)}
               required
             />
-            <label>State:</label>
+            <label>
+              State<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="State"
@@ -176,7 +213,9 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleBilling(e)}
               required
             />
-            <label>Postal Code:</label>
+            <label>
+              Postal Code<span className="star">*</span>
+            </label>
             <input
               type="text"
               placeholder="Postal Code"
@@ -185,9 +224,11 @@ const CheckoutDeatils = () => {
               onChange={(e) => handleBilling(e)}
               required
             />
-            <label>Country:</label>
+            <label>
+              Country<span className="star">*</span>
+            </label>
             <CountryDropdown
-              classes="select"
+              className="select"
               valueType="short"
               value={billingAddress.country}
               onChange={(val) =>
@@ -199,7 +240,9 @@ const CheckoutDeatils = () => {
                 })
               }
             />
-            <label>Phone:</label>
+            <label>
+              Phone<span className="star">*</span>
+            </label>
             <input
               type="number"
               placeholder="Phone"
