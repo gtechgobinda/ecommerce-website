@@ -3,6 +3,7 @@ import { BsCartX } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { selectIsLoggedIn } from "../../redux/slice/authSlice";
 import {
   ADD_TO_CART,
   CALCULATE_SUBTOTAL,
@@ -10,6 +11,7 @@ import {
   CLEAR_CART,
   DECREASE_CART,
   REMOVE_FROM_CART,
+  SAVE_URL,
   selectCartItems,
   selectCartTotalAmount,
   selectCartTotalQuantity,
@@ -23,7 +25,7 @@ const Cart = () => {
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
 
   const dispatch = useDispatch();
-
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const increaseCart = (cart) => {
     dispatch(ADD_TO_CART(cart));
   };
@@ -39,8 +41,20 @@ const Cart = () => {
   useEffect(() => {
     dispatch(CALCULATE_SUBTOTAL());
     dispatch(CALCULATE_TOTAL_QUANTITY());
+    dispatch(SAVE_URL(""));
   }, [dispatch, cartItems]);
 
+  const url = window.location.href;
+  console.log(url);
+
+  const checkout = () => {
+    if (isLoggedIn) {
+      navigate("/checkout-details");
+    } else {
+      dispatch(SAVE_URL(url));
+      navigate("/login");
+    }
+  };
   return (
     <>
       <section>
@@ -113,7 +127,9 @@ const Cart = () => {
                   </span>
                 </div>
                 <div className="button">
-                  <button className="checkout-cta">CHECKOUT</button>
+                  <button className="checkout-cta" onClick={checkout}>
+                    CHECKOUT
+                  </button>
                 </div>
               </div>
             </>

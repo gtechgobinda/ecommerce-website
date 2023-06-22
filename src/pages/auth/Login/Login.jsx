@@ -5,17 +5,27 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../../../components/loader/Loader";
 import { auth } from "../../../firebase/config";
+import { selectPeviousURL } from "../../../redux/slice/cartSlice";
 import "./Login.scss";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const previousURL = useSelector(selectPeviousURL);
 
+  const redirectUser = () => {
+    if (previousURL.includes("cart")) {
+      return navigate("/cart");
+    } else {
+      navigate("/");
+    }
+  };
   const loginUser = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -25,7 +35,7 @@ const Login = () => {
         const user = userCredential.user;
         setIsLoading(false);
         toast.success("Login Successfull");
-        navigate("/");
+        redirectUser();
       })
       .catch((error) => {
         setIsLoading(false);
@@ -41,7 +51,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         toast.success("Login Successfully");
-        navigate("/");
+        redirectUser();
       })
       .catch((error) => {
         toast.error(error.message);
