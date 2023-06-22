@@ -8,7 +8,7 @@ import { GoThreeBars } from "react-icons/go";
 import { HiX } from "react-icons/hi";
 import { MdAdminPanelSettings, MdContactSupport } from "react-icons/md";
 import { TbLogin, TbLogout, TbSearch } from "react-icons/tb";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { dummyDP } from "../../assets";
@@ -17,6 +17,10 @@ import {
   REMOVE_ACTIVE_USER,
   SET_ACTIVE_USER,
 } from "../../redux/slice/authSlice";
+import {
+  CALCULATE_TOTAL_QUANTITY,
+  selectCartTotalQuantity,
+} from "../../redux/slice/cartSlice";
 import { AdminOnlyLink } from "../adminOnlyRoute/AdminOnlyRoute";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/HiddenLink";
 import { Search } from "../index.js";
@@ -30,7 +34,10 @@ const Header = () => {
   const [profilePhoto, setProfilePhoto] = useState();
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
-
+  const cartTotalQuantity = useSelector(selectCartTotalQuantity);
+  useEffect(() => {
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  }, []);
   const dispatch = useDispatch();
   const handleScroll = () => {
     const offset = window.scrollY;
@@ -131,7 +138,9 @@ const Header = () => {
             <MdContactSupport onClick={() => navigate("/contact")} />
             <span className="cart-icon" onClick={() => navigate("/cart")}>
               <CgShoppingCart />
-              {<span>5</span>}
+              {cartTotalQuantity === 0 ? null : (
+                <>{<span>{cartTotalQuantity}</span>}</>
+              )}
             </span>
             <ShowOnLogout>
               <TbLogin
