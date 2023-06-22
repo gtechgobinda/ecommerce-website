@@ -85,7 +85,7 @@ const ProductDetails = () => {
             </div>
             <div className="right">
               <span className="name">{product.name}</span>
-              <span className="price">{product.price}</span>
+              <span className="price">₹{product.price}</span>
               <span className="desc">{product.desc}</span>
 
               <div className="cart-buttons">
