@@ -1,0 +1,49 @@
+@import "../../css-config/mixins.scss";
+.checkoutSummary {
+  .heading {
+  }
+  .checkoutSummary-details {
+    .summary {
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      p {
+      }
+      .subtotal {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        @include md {
+          justify-content: unset;
+          gap: 10px;
+        }
+      }
+      .singel-product {
+        border: 2px solid rgb(161, 161, 161);
+        padding: 5px 8px;
+        .product-name {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        .product-details {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          .product-photo {
+            background-color: rgba(0, 0, 0, 0.05);
+            width: 60px;
+            height: 60px;
+            img {
+              width: 100%;
+            }
+          }
+          .details {
+          }
+        }
+      }
+    }
+  }
+}
