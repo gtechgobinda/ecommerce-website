@@ -11,12 +11,21 @@ app.use(express.json());
 app.get("/",(req,res)=>{
     res.send("Welcome to gtechshop website")
 })
+const array = [];
 const calculateOrderAmount = (items) => {
-  return 1400;
+    items.map((item) => {
+      const { price, cartQuantity } = item;
+      const cartItemAmount = price * cartQuantity;
+      return array.push(cartItemAmount);
+    });
+    const totalAmount = array.reduce((a, b) => {
+      return a + b;
+    }, 0);
+  return totalAmount;
 };
 
 app.post("/create-payment-intent", async (req, res) => {
-  const { items } = req.body;
+  const { items ,shipping,description} = req.body;
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
@@ -25,6 +34,19 @@ app.post("/create-payment-intent", async (req, res) => {
     automatic_payment_methods: {
       enabled: true,
     },
+    description,
+    shipping:{
+        address:{
+            lin1:shipping.line1,
+            lin2:shipping.line2,
+            city:shipping.city,
+            country:shipping.country,
+            postal_code:shipping.postal_code,
+        },
+        name:shipping.name,
+        phone:shipping.phone
+    },
+    receipt_email:customerEmail
   });
 
   res.send({
