@@ -6,7 +6,7 @@ import {
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import CheckoutSummary from "../checkoutSummary/CheckoutSummary";
-
+import "./CheckoutForm.scss";
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -72,20 +72,24 @@ const CheckoutForm = () => {
 
   return (
     <>
-      <section>
-        <div className="container checkout">
-          <h2>Checkout</h2>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <CheckoutSummary />
-            </div>
-            <div>
-              <h3>Stripe payment</h3>
+      <div className="checkout-container-main">
+        <h2>CHECKOUT</h2>
+        <div className="checkout-container-display">
+          <div className="checkout-summary">
+            <CheckoutSummary />
+          </div>
+          <form onSubmit={handleSubmit} className="checkout-form">
+            <div className="checkout-pay">
+              <h3 className="checkout-pay-h3">Stripe payment</h3>
               <PaymentElement
                 id="payment-element"
                 options={paymentElementOptions}
               />
-              <button disabled={isLoading || !stripe || !elements} id="submit">
+              <button
+                disabled={isLoading || !stripe || !elements}
+                id="submit"
+                className="paynow-button"
+              >
                 <span id="button-text">
                   {isLoading ? (
                     <div className="spinner" id="spinner"></div>
@@ -99,7 +103,7 @@ const CheckoutForm = () => {
             </div>
           </form>
         </div>
-      </section>
+      </div>
     </>
   );
 };

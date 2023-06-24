@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { CheckoutForm } from "../../components";
+import { CheckoutForm, Loader } from "../../components";
 import { selectEmail } from "../../redux/slice/authSlice";
 import {
   CALCULATE_SUBTOTAL,
@@ -20,6 +20,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_PK);
 const Checkout = () => {
   const [message, setMessage] = useState("Initializng Checkout");
   const [clientSecret, setClientSecret] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const cartItems = useSelector(selectCartItems);
   const totalAmount = useSelector(selectCartTotalAmount);
@@ -35,6 +36,7 @@ const Checkout = () => {
 
   const description = `gtechstore payment: email:${customerEmail},Amount:${totalAmount}`;
   useEffect(() => {
+    setIsLoading(true);
     fetch("http://localhost:4242/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -54,8 +56,10 @@ const Checkout = () => {
       })
       .then((data) => {
         setClientSecret(data.clientSecret);
+        setIsLoading(false);
       })
       .catch((error) => {
+        setIsLoading(false);
         setMessage("Failed to initialize checkout");
         toast.error("Something went wrong!!!");
       });
@@ -70,13 +74,21 @@ const Checkout = () => {
   };
   return (
     <>
-      <section>
-        <div className="container">{!clientSecret && <h3>{message}</h3>}</div>
-      </section>
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <section>
+            <div className="container">
+              {!clientSecret && <h3>{message}</h3>}
+            </div>
+          </section>
+          {clientSecret && (
+            <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
+          )}
+        </>
       )}
     </>
   );
