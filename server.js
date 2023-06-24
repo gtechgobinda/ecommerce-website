@@ -21,7 +21,7 @@ const calculateOrderAmount = (items) => {
   const totalAmount = array.reduce((a, b) => {
     return a + b;
   }, 0);
-  return totalAmount * 100;
+  return totalAmount *100;
 };
 
 app.post("/create-payment-intent", async (req, res) => {
