@@ -9,6 +9,7 @@ import {
   Admin,
   Cart,
   Checkout,
+  CheckoutSuccess,
   Contact,
   Home,
   Login,
@@ -41,6 +42,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-details" element={<CheckoutDeatils />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout-success" element={<CheckoutSuccess />} />
         </Routes>
         <Footer />
       </BrowserRouter>
