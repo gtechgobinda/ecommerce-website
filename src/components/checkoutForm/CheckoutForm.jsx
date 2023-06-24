@@ -4,6 +4,7 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import CheckoutSummary from "../checkoutSummary/CheckoutSummary";
 
 const CheckoutForm = () => {
@@ -27,7 +28,9 @@ const CheckoutForm = () => {
       return;
     }
   }, [stripe]);
-
+  const saveOrder = () => {
+    console.log("Order Saved");
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(null);
@@ -37,19 +40,29 @@ const CheckoutForm = () => {
 
     setIsLoading(true);
 
-    const confirmPayment = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: "http://localhost:5173/checkout-success",
-      },
-    });
-
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
-    } else {
-      setMessage("An unexpected error occurred.");
-    }
-
+    const confirmPayment = await stripe
+      .confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: "http://localhost:5173/checkout-success",
+        },
+        redirect_url: "if_required",
+      })
+      .then((result) => {
+        //ok - payment bad-error
+        if (result.error) {
+          toast.error(result.error.message);
+          setMessage(result.error.message);
+          return;
+        }
+        if (result.paymentIntent) {
+          if (result.paymentIntent.status === "succeeded") {
+            setIsLoading(false);
+            toast.success("payment successful");
+            saveOrder();
+          }
+        }
+      });
     setIsLoading(false);
   };
 
