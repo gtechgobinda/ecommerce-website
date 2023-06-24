@@ -12,11 +12,11 @@ app.get("/",(req,res)=>{
     res.send("Welcome to gtechshop website")
 })
 const calculateOrderAmount = (items) => {
-  return 1400;
+  return 1400 * 100;
 };
 
 app.post("/create-payment-intent", async (req, res) => {
-  const { items } = req.body;
+  const { items,shipping,description } = req.body;
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
