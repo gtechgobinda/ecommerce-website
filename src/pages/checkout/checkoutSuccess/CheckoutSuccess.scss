@@ -1,1 +1,63 @@
 @import "../../../css-config/mixins.scss";
+
+.success-wrapper {
+  height: 100vh;
+  .success {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: #bfc2c2;
+    width: fit-content;
+    margin-top: 150px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    gap: 5px;
+    @include md {
+      gap: 15px;
+      padding: 50px 150px;
+      margin-top: 200px;
+    }
+    .icon {
+      color: rgb(1, 94, 1);
+      font-size: 30px;
+      @include md {
+        font-size: 50px;
+      }
+    }
+    .heading-success {
+      font-size: 15px;
+      @include md {
+        font-size: 25px;
+      }
+    }
+    .heading-thankyou {
+      font-size: 20px;
+      @include md {
+        font-size: 50px;
+        font-weight: bolder;
+        margin-bottom: 15px;
+      }
+    }
+    .btn {
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #8e2de2;
+      color: white;
+      border: none;
+      font-size: 15px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 10px;
+      @include md {
+        width: 350px;
+        font-size: 20px;
+      }
+      &:hover {
+        background-color: #944bd4;
+        transition: ease-in-out;
+      }
+    }
+  }
+}
