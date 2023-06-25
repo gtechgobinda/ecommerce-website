@@ -3,17 +3,35 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { db } from "../../firebase/config";
+import { selectEmail, selectUserID } from "../../redux/slice/authSlice";
+import {
+  CLEAR_CART,
+  selectCartItems,
+  selectCartTotalAmount,
+} from "../../redux/slice/cartSlice";
+import { selectShippingAddress } from "../../redux/slice/checkoutSlice";
 import CheckoutSummary from "../checkoutSummary/CheckoutSummary";
 import "./CheckoutForm.scss";
-const CheckoutForm = () => {
-  const stripe = useStripe();
-  const elements = useElements();
 
-  // const [email, setEmail] = useState("");
+const CheckoutForm = () => {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  // const [email, setEmail] = useState("");
+  const stripe = useStripe();
+  const elements = useElements();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userID = useSelector(selectUserID);
+  const userEmail = useSelector(selectEmail);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotalAmount = useSelector(selectCartTotalAmount);
+  const shippingAddress = useSelector(selectShippingAddress);
 
   useEffect(() => {
     if (!stripe) {
@@ -29,7 +47,28 @@ const CheckoutForm = () => {
     }
   }, [stripe]);
   const saveOrder = () => {
-    console.log("Order Saved");
+    const today = new Date();
+    const date = today.toDateString();
+    const time = today.toLocaleTimeString();
+    const orderConfig = {
+      userID,
+      userEmail,
+      orderDate: date,
+      orderTime: time,
+      orderAmount: cartTotalAmount,
+      orderStatus: "Order Placed...",
+      cartItems,
+      shippingAddress,
+      createdAt: Timestamp.now().toDate(),
+    };
+    try {
+      addDoc(collection(db, "orders"), orderConfig);
+      dispatch(CLEAR_CART());
+      toast.success("Order Saved");
+      navigate("/checkout-success");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +85,7 @@ const CheckoutForm = () => {
         confirmParams: {
           return_url: "http://localhost:5173/checkout-success",
         },
-        redirect_url: "if_required",
+        redirect: "if_required",
       })
       .then((result) => {
         //ok - payment bad-error
