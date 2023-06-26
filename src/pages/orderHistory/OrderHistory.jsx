@@ -22,6 +22,7 @@ const OrderHistory = () => {
   const handleClick = (id) => {
     navigate(`/order-details/${id}`);
   };
+  const filteredOrders = orders.filter((order) => order.userID === userID);
   return (
     <>
       {/* <section>
@@ -85,12 +86,12 @@ const OrderHistory = () => {
         </p>
         <>
           {isLoading && <Loader />}
-          {orders.length === 0 ? (
+          {filteredOrders.length === 0 ? (
             <p>No Orders Found</p>
           ) : (
             <>
               <div className="orderHistory-content">
-                {orders.map((order, index) => {
+                {filteredOrders.map((order, index) => {
                   const { id, orderDate, orderTime, orderAmount, orderStatus } =
                     order;
                   return (
