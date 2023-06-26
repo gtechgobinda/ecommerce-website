@@ -161,5 +161,24 @@
         }
       }
     }
+    .review-container {
+      margin-top: 20px;
+      .review-heading {
+        margin-bottom: 5px;
+      }
+      .review-main {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: #f8f8f8;
+        border-bottom: 1px solid rgb(214, 214, 214);
+        padding: 10px 15px;
+        .review-desc {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+    }
   }
 }

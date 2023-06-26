@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import {
-  FaCartPlus,
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaPinterest,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import StarsRating from "react-star-rate";
+import useFetchCollection from "../../../customHooks/useFetchCollection.jsx";
 import useFetchDocument from "../../../customHooks/useFetchDocument.jsx";
 import {
   ADD_TO_CART,
@@ -27,6 +22,9 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const { document } = useFetchDocument("products", id);
+  const { data } = useFetchCollection("reviews");
+  const filteredReviews = data.filter((review) => review.productID === id);
+
   const cart = cartItems.find((cart) => cart.id === id);
   const isCartAdded = cartItems.findIndex((cart) => {
     return cart.id === id;
@@ -99,7 +97,7 @@ const ProductDetails = () => {
                     Brand:
                     <span>{product.brand}</span>
                   </span>
-                  <span className="text-bold">
+                  {/* <span className="text-bold">
                     Share:
                     <span className="social-icons">
                       <FaFacebookF size={16} />
@@ -108,11 +106,42 @@ const ProductDetails = () => {
                       <FaLinkedinIn size={16} />
                       <FaPinterest size={16} />
                     </span>
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
           )}
+          <div className="review-container">
+            <h3 className="review-heading">Product Reviews</h3>
+
+            {filteredReviews.length === 0 ? (
+              <p>There are no reviews for this product yet</p>
+            ) : (
+              <>
+                {filteredReviews.map((item, index) => {
+                  const { rate, review, reviewDate, userName } = item;
+                  return (
+                    <>
+                      <div className="review-main" key={index}>
+                        <StarsRating value={rate} />
+                        <div className="review-desc">
+                          <p className="review">{review}</p>
+                          <span>
+                            <b>Review Date: </b>
+                            {reviewDate}
+                          </span>
+                          <span>
+                            <b>by: </b>
+                            {userName}
+                          </span>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </>
