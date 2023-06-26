@@ -1,4 +1,3 @@
-import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import {
@@ -11,8 +10,7 @@ import {
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { db } from "../../../firebase/config.js";
+import useFetchDocument from "../../../customHooks/useFetchDocument.jsx";
 import {
   ADD_TO_CART,
   CALCULATE_TOTAL_QUANTITY,
@@ -28,30 +26,15 @@ const ProductDetails = () => {
   const [product, setProduct] = useState("");
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
-
+  const { document } = useFetchDocument("products", id);
   const cart = cartItems.find((cart) => cart.id === id);
   const isCartAdded = cartItems.findIndex((cart) => {
     return cart.id === id;
   });
   useEffect(() => {
-    getProduct();
-  }, []);
+    setProduct(document);
+  }, [document]);
 
-  const getProduct = async () => {
-    const docRef = doc(db, "products", id);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      // console.log("Document data:", docSnap.data());
-      const obj = {
-        id: id,
-        ...docSnap.data(),
-      };
-      setProduct(obj);
-    } else {
-      toast.error("Product not found");
-    }
-  };
   const addToCart = (product) => {
     dispatch(ADD_TO_CART(product));
     dispatch(CALCULATE_TOTAL_QUANTITY());
@@ -75,57 +58,61 @@ const ProductDetails = () => {
               Back to Products
             </Link>
           </div>
-          <div className="single-product-page">
-            <div className="left">
-              {product === "" ? (
+          {product === null ? (
+            <Loader />
+          ) : (
+            <div className="single-product-page">
+              <div className="left">
+                {/* {product === null ? (
                 <Loader />
-              ) : (
+              ) : ( */}
                 <img src={product.imageURL} alt={product.name} />
-              )}
-            </div>
-            <div className="right">
-              <span className="name">{product.name}</span>
-              <span className="price">₹{product.price}</span>
-              <span className="desc">{product.desc}</span>
+                {/* )} */}
+              </div>
+              <div className="right">
+                <span className="name">{product.name}</span>
+                <span className="price">₹{product.price}</span>
+                <span className="desc">{product.desc}</span>
 
-              <div className="cart-buttons">
-                <div className="quantity-buttons">
-                  {isCartAdded < 0 ? null : (
-                    <>
-                      <span onClick={() => decreaseCart(product)}>-</span>
-                      <span>{cart.cartQuantity}</span>
-                      <span onClick={() => increaseCart(product)}>+</span>
-                    </>
-                  )}
+                <div className="cart-buttons">
+                  <div className="quantity-buttons">
+                    {isCartAdded < 0 ? null : (
+                      <>
+                        <span onClick={() => decreaseCart(product)}>-</span>
+                        <span>{cart.cartQuantity}</span>
+                        <span onClick={() => increaseCart(product)}>+</span>
+                      </>
+                    )}
+                  </div>
+
+                  <button
+                    className="add-to-cart-button"
+                    onClick={() => addToCart(product)}
+                  >
+                    <FaCartPlus size={20} />
+                    ADD TO CART
+                  </button>
                 </div>
-
-                <button
-                  className="add-to-cart-button"
-                  onClick={() => addToCart(product)}
-                >
-                  <FaCartPlus size={20} />
-                  ADD TO CART
-                </button>
-              </div>
-              <span className="divider" />
-              <div className="info-item">
-                <span className="text-bold">
-                  Brand:
-                  <span>{product.brand}</span>
-                </span>
-                <span className="text-bold">
-                  Share:
-                  <span className="social-icons">
-                    <FaFacebookF size={16} />
-                    <FaTwitter size={16} />
-                    <FaInstagram size={16} />
-                    <FaLinkedinIn size={16} />
-                    <FaPinterest size={16} />
+                <span className="divider" />
+                <div className="info-item">
+                  <span className="text-bold">
+                    Brand:
+                    <span>{product.brand}</span>
                   </span>
-                </span>
+                  <span className="text-bold">
+                    Share:
+                    <span className="social-icons">
+                      <FaFacebookF size={16} />
+                      <FaTwitter size={16} />
+                      <FaInstagram size={16} />
+                      <FaLinkedinIn size={16} />
+                      <FaPinterest size={16} />
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>

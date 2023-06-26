@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useFetchCollection from "../../customHooks/useFetchCollection.jsx";
 import {
   GET_PRICE_RANGE,
   STORE_PRODUCTS,
   selectProducts,
 } from "../../redux/slice/productSlice.jsx";
-import useFetchCollection from "../customHooks/useFetchCollection.jsx";
 import { Loader, ProductList } from "../index.js";
 import "./Product.scss";
 const Product = () => {

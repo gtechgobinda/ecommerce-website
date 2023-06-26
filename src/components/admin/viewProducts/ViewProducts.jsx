@@ -7,12 +7,12 @@ import { MdDeleteForever } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import useFetchCollection from "../../../customHooks/useFetchCollection.jsx";
 import { db, storage } from "../../../firebase/config.js";
 import {
   STORE_PRODUCTS,
   selectProducts,
 } from "../../../redux/slice/productSlice.jsx";
-import useFetchCollection from "../../customHooks/useFetchCollection.jsx";
 import { Loader } from "../../index.js";
 import "./ViewProducts.scss";
 
