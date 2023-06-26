@@ -1,1 +1,54 @@
 @import "../../css-config/mixins.scss";
+.orderHistory-container {
+  padding: 15px;
+  .heading {
+  }
+  .heading-next-text {
+    margin-top: 5px;
+  }
+  .orderHistory-content {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .order-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      cursor: pointer;
+      gap: 4px;
+      background-color: rgb(255, 249, 249);
+      @include md {
+        gap: 10px;
+        padding: 10px 10px;
+      }
+      .serial-no {
+      }
+      .order-img {
+        background-color: rgba(0, 0, 0, 0.05);
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        img {
+          width: 100%;
+          padding: 5px;
+        }
+      }
+      .order-desc {
+        .order-date-time {
+        }
+        .order-id {
+        }
+        .order-amount {
+        }
+        .pending {
+        }
+        .delivered {
+        }
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+}
