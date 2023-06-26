@@ -1,1 +1,61 @@
 @import "../../css-config/mixins.scss";
+.review-container {
+  padding: 15px;
+  .review-container-heading {
+  }
+  .review-product-img {
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 60px;
+    height: 60px;
+    img {
+      width: 100%;
+    }
+  }
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .rating {
+      display: flex;
+      flex-direction: column;
+    }
+    .review {
+      display: flex;
+      flex-direction: column;
+      textarea {
+        width: auto;
+        font-size: 14px;
+        height: 150px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        color: #333;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease-in-out;
+        @include md {
+          width: 350px;
+        }
+        &:focus {
+          outline: none;
+          border-color: #8e2de2;
+        }
+      }
+    }
+    .review-submit-button {
+      background-color: #8e2de2;
+      color: white;
+      border: none;
+      padding: 10px 5px;
+      font-size: 15px;
+      text-transform: uppercase;
+      cursor: pointer;
+      @include md {
+        width: 350px;
+      }
+      &:hover {
+        background-color: #944bd4;
+        transition: ease-in-out;
+      }
+    }
+  }
+}

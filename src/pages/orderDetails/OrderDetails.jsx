@@ -64,7 +64,7 @@ const OrderDetails = () => {
                       </p>
                       <div className="review-button">
                         <button
-                          onClick={() => navigate(`/review-products/${id}`)}
+                          onClick={() => navigate(`/review-product/${id}`)}
                         >
                           Review Product
                         </button>
