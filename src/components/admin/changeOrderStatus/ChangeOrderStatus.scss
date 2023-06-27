@@ -13,7 +13,7 @@
     }
     .order-status-btn {
       button {
-        background-color: #8e2de2;
+        background-image: linear-gradient(to right, #8e2de2, #4a00e0);
         color: white;
         border: none;
         padding: 10px 12px;
@@ -21,7 +21,8 @@
         text-transform: uppercase;
         cursor: pointer;
         &:hover {
-          background-color: #944bd4;
+          background-image: none;
+          background-color: #8e2de2;
           transition: ease-in-out;
         }
       }
