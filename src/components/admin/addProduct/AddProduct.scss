@@ -17,14 +17,16 @@
     button {
       width: 100%;
       padding: 10px 20px;
-      background-color: #8e2de2;
+      background-image: linear-gradient(to left, #8e2de2, #4a00e0);
+
       color: white;
       border: none;
       font-size: 15px;
       text-transform: uppercase;
       cursor: pointer;
       &:hover {
-        background-color: #944bd4;
+        background-image: none;
+        background-color: #8e2de2;
         transition: ease-in-out;
       }
     }

@@ -13,7 +13,8 @@
     }
     .order-status-btn {
       button {
-        background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+        background-image: linear-gradient(to left, #8e2de2, #4a00e0);
+        border-bottom: 3px solid #6516aa;
         color: white;
         border: none;
         padding: 10px 12px;

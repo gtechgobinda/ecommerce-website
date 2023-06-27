@@ -35,18 +35,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        button {
+        .admin-btn {
           text-transform: uppercase;
           padding: 5px 7px;
           font-size: 14px;
           font-weight: 600;
-          background-color: #8e2de2;
+          background-image: linear-gradient(to left, #8e2de2, #4a00e0);
           border: none;
           color: white;
           cursor: pointer;
-          border-radius: 5px;
           &:hover {
-            background-color: #944bd4;
+            background-image: none;
+            background-color: #8e2de2;
             transition: ease-in-out;
           }
         }

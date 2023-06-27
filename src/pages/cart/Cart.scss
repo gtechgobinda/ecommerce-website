@@ -184,11 +184,15 @@
       cursor: pointer;
       font-size: 15px;
       color: white;
-      background-color: #8e2de2;
-      border-bottom: 3px solid #6516aa;
+      background-image: linear-gradient(to left, #8e2de2, #4a00e0);
       width: 100%;
       @include md {
         width: 500px;
+      }
+      &:hover {
+        background-image: none;
+        background-color: #8e2de2;
+        transition: ease-in-out;
       }
     }
   }
