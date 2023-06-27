@@ -1,4 +1,5 @@
 export { default as AddProduct } from "./admin/addProduct/AddProduct.jsx";
+export { default as ChangeOrderStatus } from "./admin/changeOrderStatus/ChangeOrderStatus.jsx";
 export { default as Home } from "./admin/home/Home.jsx";
 export { default as Navbar } from "./admin/navbar/Navbar.jsx";
 export { default as OrderDetails } from "./admin/orderDetails/OrderDetails.jsx";

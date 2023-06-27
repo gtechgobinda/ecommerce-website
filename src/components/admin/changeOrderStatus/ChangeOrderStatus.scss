@@ -1,1 +1,30 @@
 @import "../../../css-config/mixins.scss";
+.order-status {
+  .order-status-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .order-status-option {
+      select {
+        border: 1px solid #8e2de2;
+        outline: none;
+        padding: 3px 5px;
+      }
+    }
+    .order-status-btn {
+      button {
+        background-color: #8e2de2;
+        color: white;
+        border: none;
+        padding: 10px 12px;
+        font-size: 15px;
+        text-transform: uppercase;
+        cursor: pointer;
+        &:hover {
+          background-color: #944bd4;
+          transition: ease-in-out;
+        }
+      }
+    }
+  }
+}

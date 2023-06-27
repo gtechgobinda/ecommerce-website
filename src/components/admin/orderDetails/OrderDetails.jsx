@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate, useParams } from "react-router-dom";
 import useFetchDocument from "../../../customHooks/useFetchDocument";
-import { Loader } from "../../index";
+import { ChangeOrderStatus, Loader } from "../../index";
 import "./OrderDetails.scss";
 
 const OrderDetails = () => {
@@ -79,6 +79,7 @@ const OrderDetails = () => {
             })}
           </>
         )}
+        <ChangeOrderStatus />
       </div>
     </>
   );
