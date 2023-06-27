@@ -15,6 +15,16 @@
     font-size: 15px;
   }
   .order-details-main {
+    .order-status {
+      .pending {
+        color: red;
+        font-weight: 500;
+      }
+      .delivered {
+        color: green;
+        font-weight: 500;
+      }
+    }
   }
   .order-item {
     display: flex;

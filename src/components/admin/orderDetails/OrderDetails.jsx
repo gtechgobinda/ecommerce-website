@@ -40,7 +40,15 @@ const OrderDetails = () => {
               </p>
               <p className="order-status">
                 <b>Order Status: </b>
-                {order.orderStatus}
+                <span
+                  className={
+                    order.orderStatus !== "Delivered..."
+                      ? "pending"
+                      : "delivered"
+                  }
+                >
+                  {order.orderStatus}
+                </span>
               </p>
               <p className="shipping-address">
                 <b>Shipping Address: </b>
@@ -79,7 +87,7 @@ const OrderDetails = () => {
             })}
           </>
         )}
-        <ChangeOrderStatus />
+        <ChangeOrderStatus order={order} id={id} />
       </div>
     </>
   );

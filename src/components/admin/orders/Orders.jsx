@@ -67,7 +67,7 @@ const Orders = () => {
                           <td>{orderAmount}</td>
                           <td
                             className={
-                              orderStatus !== "Delivered"
+                              orderStatus !== "Delivered..."
                                 ? "pending"
                                 : "delivered"
                             }
