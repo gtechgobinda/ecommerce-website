@@ -19,7 +19,7 @@ const OrderDetails = () => {
       <div className="all-order-details-container">
         <h2 className="order-details-heading">Order Details</h2>
         <button
-          onClick={() => navigate("/order-history")}
+          onClick={() => navigate("/admin/orders")}
           className="backToOrders"
         >
           <BiArrowBack />
