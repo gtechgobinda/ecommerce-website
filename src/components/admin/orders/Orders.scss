@@ -1,1 +1,46 @@
 @import "../../../css-config/mixins.scss";
+.all-order-table {
+  padding: 5px;
+  width: 100%;
+  overflow-x: auto;
+  h2 {
+    padding-bottom: 10px;
+  }
+  .search {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1.4rem;
+    border: 2px solid black;
+
+    thead {
+      border-top: 2px solid black;
+      border-bottom: 2px solid black;
+      border: 2px solid black;
+    }
+
+    th {
+      border: 1px solid black;
+    }
+
+    th,
+    td {
+      vertical-align: top;
+      text-align: left;
+      padding: 8px;
+      border: 1px solid black;
+    }
+
+    tr {
+      border-bottom: 1px solid black;
+    }
+
+    tr:nth-child(even) {
+      background-color: #eee;
+    }
+  }
+}
