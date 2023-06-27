@@ -1,1 +1,52 @@
 @import "../../../css-config/mixins.scss";
+.all-order-details-container {
+  padding: 10px;
+  .order-details-heading {
+  }
+  .backToOrders {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: none;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .order-details-main {
+  }
+  .order-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(255, 249, 249);
+    padding: 10px;
+    .order-img {
+      background-color: rgba(0, 0, 0, 0.05);
+      width: 60px;
+      height: 60px;
+      img {
+        width: 100%;
+      }
+    }
+    .order-desc {
+      .review-button {
+        button {
+          background-color: #8e2de2;
+          color: white;
+          border: none;
+          padding: 7px 5px;
+          font-size: 12px;
+          text-transform: uppercase;
+          cursor: pointer;
+          &:hover {
+            background-color: #944bd4;
+            transition: ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
