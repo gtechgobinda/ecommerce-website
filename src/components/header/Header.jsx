@@ -7,7 +7,7 @@ import { FaBoxOpen } from "react-icons/fa";
 import { GoThreeBars } from "react-icons/go";
 import { HiX } from "react-icons/hi";
 import { MdAdminPanelSettings, MdContactSupport } from "react-icons/md";
-import { TbLogin, TbLogout, TbSearch } from "react-icons/tb";
+import { TbLogin, TbLogout } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -130,9 +130,12 @@ const Header = () => {
             GTECHSTORE.
           </div>
           <div className="right">
-            <TbSearch onClick={() => setShowSearch(true)} />
+            {/* <TbSearch onClick={() => setShowSearch(true)} /> */}
             <ShowOnLogin>
-              <FaBoxOpen className="my-orders-icon" />
+              <FaBoxOpen
+                className="my-orders-icon"
+                onClick={() => navigate("/order-history")}
+              />
             </ShowOnLogin>
             {/* <AiOutlineHeart className="favourite-icon" /> */}
             <MdContactSupport onClick={() => navigate("/contact")} />
