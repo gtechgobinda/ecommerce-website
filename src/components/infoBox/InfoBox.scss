@@ -1,0 +1,22 @@
+@import "../../css-config/mixins.scss";
+.info-box-container {
+  display: flex;
+  gap: 10px;
+  .info-box-cart {
+    width: 200px;
+    background-color: #d3d3d3;
+    padding: 10px 8px;
+    .info-box-title {
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .info-box-desc {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .icon {
+      }
+    }
+  }
+}
