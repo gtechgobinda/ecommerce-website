@@ -17,7 +17,7 @@ import {
   STORE_PRODUCTS,
   selectProducts,
 } from "../../../redux/slice/productSlice.jsx";
-import { Loader, Search } from "../../index.js";
+import { Loader, Pagination, Search } from "../../index.js";
 import "./ViewProducts.scss";
 
 const ViewProducts = () => {
@@ -25,7 +25,17 @@ const ViewProducts = () => {
   const { data, isLoading } = useFetchCollection("products");
   const products = useSelector(selectProducts);
   const filteredProducts = useSelector(selectFilteredProducts);
+  //pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(10);
 
+  //Get Current products
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
@@ -130,7 +140,7 @@ const ViewProducts = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredProducts.map((product, index) => {
+              {currentProducts.map((product, index) => {
                 const { id, name, price, imageURL, category } = product;
                 return (
                   <>
@@ -164,6 +174,12 @@ const ViewProducts = () => {
             </tbody>
           </table>
         )}
+        <Pagination
+          productsPerPage={productsPerPage}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+          totalProducts={filteredProducts.length}
+        />
       </div>
     </>
   );
