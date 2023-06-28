@@ -8,6 +8,8 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
+import { selectOrderHistory } from "../../redux/slice/orderSlice";
 import "./Chart.scss";
 
 ChartJS.register(
@@ -31,11 +33,28 @@ export const options = {
     },
   },
 };
+
 const Chart = () => {
-  const placed = 2;
-  const processing = 2;
-  const shipped = 2;
-  const delivered = 8;
+  const orders = useSelector(selectOrderHistory);
+  //Create a new array of order status
+  const array = [];
+  orders.map((item) => {
+    const { orderStatus } = item;
+    array.push(orderStatus);
+  });
+  const getOrderCount = (arr, value) => {
+    return arr.filter((n) => n === value).length;
+  };
+  const [q1, q2, q3, q4] = [
+    "Order Placed...",
+    "Processing...",
+    "Shipped...",
+    "Delivered...",
+  ];
+  const placed = getOrderCount(array, q1);
+  const processing = getOrderCount(array, q2);
+  const shipped = getOrderCount(array, q3);
+  const delivered = getOrderCount(array, q4);
   const data = {
     labels: ["Places Orders", "Processing", "Shipped", "Delivered"],
     datasets: [
