@@ -1,7 +1,7 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import Notiflix from "notiflix";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,15 +10,21 @@ import { toast } from "react-toastify";
 import useFetchCollection from "../../../customHooks/useFetchCollection.jsx";
 import { db, storage } from "../../../firebase/config.js";
 import {
+  FILTER_BY_SEARCH,
+  selectFilteredProducts,
+} from "../../../redux/slice/filterSlice.jsx";
+import {
   STORE_PRODUCTS,
   selectProducts,
 } from "../../../redux/slice/productSlice.jsx";
-import { Loader } from "../../index.js";
+import { Loader, Search } from "../../index.js";
 import "./ViewProducts.scss";
 
 const ViewProducts = () => {
+  const [search, setSearch] = useState("");
   const { data, isLoading } = useFetchCollection("products");
   const products = useSelector(selectProducts);
+  const filteredProducts = useSelector(selectFilteredProducts);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,6 +34,10 @@ const ViewProducts = () => {
       })
     );
   }, [dispatch, data]);
+
+  useEffect(() => {
+    dispatch(FILTER_BY_SEARCH({ products, search }));
+  }, [dispatch, products, search]);
 
   // useEffect(() => {
   //   getProducts();
@@ -99,7 +109,13 @@ const ViewProducts = () => {
       {isLoading && <Loader />}
       <div className="table">
         <h2>All Products</h2>
-        {products.length === 0 ? (
+        <div className="admin-search">
+          <p>
+            <b>{filteredProducts.length} </b>products found
+          </p>
+          <Search value={search} onChange={(e) => setSearch(e.target.value)} />
+        </div>
+        {filteredProducts.length === 0 ? (
           <p>No Products Found </p>
         ) : (
           <table>
@@ -114,7 +130,7 @@ const ViewProducts = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product, index) => {
+              {filteredProducts.map((product, index) => {
                 const { id, name, price, imageURL, category } = product;
                 return (
                   <>
