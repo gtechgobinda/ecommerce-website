@@ -14,6 +14,7 @@ import {
   STORE_PRODUCTS,
   selectProducts,
 } from "../../../redux/slice/productSlice";
+import Chart from "../../chart/Chart";
 import InfoBox from "../../infoBox/InfoBox";
 import "./Home.scss";
 
@@ -41,22 +42,27 @@ const Home = () => {
   return (
     <>
       <div className="admin-home-container">
-        <div className="info-box1">
-          <InfoBox
-            title={"Earning"}
-            count={`₹${totalOrderAmount}`}
-            icon={earningIcon}
-          />
+        <div className="all-info-box">
+          <div className="info-box1">
+            <InfoBox
+              title={"Earning"}
+              count={`₹${totalOrderAmount}`}
+              icon={earningIcon}
+            />
+          </div>
+          <div className="info-box2">
+            <InfoBox
+              title={"Products"}
+              count={products.length}
+              icon={productIcon}
+            />
+          </div>
+          <div className="info-box3">
+            <InfoBox title={"Orders"} count={orders.length} icon={ordersIcon} />
+          </div>
         </div>
-        <div className="info-box2">
-          <InfoBox
-            title={"Products"}
-            count={products.length}
-            icon={productIcon}
-          />
-        </div>
-        <div className="info-box3">
-          <InfoBox title={"Orders"} count={orders.length} icon={ordersIcon} />
+        <div className="order-chart">
+          <Chart />
         </div>
       </div>
     </>

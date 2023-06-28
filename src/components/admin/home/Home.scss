@@ -1,6 +1,13 @@
 @import "../../../css-config/mixins.scss";
 .admin-home-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
+  .all-info-box {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .order-chart {
+  }
 }
