@@ -117,7 +117,7 @@ const Header = () => {
           <ul className="left">
             <li>Home</li>
             <li>About</li>
-            <li>Categories</li>
+            {/* <li>Categories</li> */}
             <li>
               <AdminOnlyLink>
                 <Link to="/admin/home">
@@ -132,27 +132,48 @@ const Header = () => {
           <div className="right">
             {/* <TbSearch onClick={() => setShowSearch(true)} /> */}
             <ShowOnLogin>
-              <FaBoxOpen
-                className="my-orders-icon"
-                onClick={() => navigate("/order-history")}
-              />
+              <span className="my-orders-icon-tooltip">
+                <FaBoxOpen
+                  className="my-orders-icon"
+                  onClick={() => navigate("/order-history")}
+                />
+                <p className="tooltip">Orders</p>
+              </span>
             </ShowOnLogin>
             {/* <AiOutlineHeart className="favourite-icon" /> */}
-            <MdContactSupport onClick={() => navigate("/contact")} />
-            <span className="cart-icon" onClick={() => navigate("/cart")}>
-              <CgShoppingCart />
-              {cartTotalQuantity === 0 ? null : (
-                <>{<span>{cartTotalQuantity}</span>}</>
-              )}
+            <span className="contact-icon-tooltip">
+              <MdContactSupport
+                onClick={() => navigate("/contact")}
+                className="contact-icon"
+              />
+              <p className="tooltip">Contact</p>
+            </span>
+            <span className="cart-icon-tooltip">
+              <span
+                className="cart-icon-main"
+                onClick={() => navigate("/cart")}
+              >
+                <CgShoppingCart className="cart-icon" />
+                {cartTotalQuantity === 0 ? null : (
+                  <>{<span className="cart-no">{cartTotalQuantity}</span>}</>
+                )}
+              </span>
+              <p className="tooltip">Cart</p>
             </span>
             <ShowOnLogout>
-              <TbLogin
-                className="login-icon"
-                onClick={() => navigate("/login")}
-              />
+              <span className="login-icon-tooltip">
+                <TbLogin
+                  className="login-icon"
+                  onClick={() => navigate("/login")}
+                />
+                <p className="tooltip">Login</p>
+              </span>
             </ShowOnLogout>
             <ShowOnLogin>
-              <TbLogout className="logout-icon" onClick={logoutUser} />
+              <span className="logout-icon-tooltip">
+                <TbLogout className="logout-icon" onClick={logoutUser} />
+                <p className="tooltip">Logout</p>
+              </span>
             </ShowOnLogin>
             <div className="navbar-menu">
               <GoThreeBars

@@ -77,46 +77,138 @@
           font-size: 24px;
         }
       }
-      .my-orders-icon {
-        display: none;
-        @include md {
-          display: block;
-        }
-      }
-      .favourite-icon {
-        display: none;
-        @include md {
-          display: block;
-        }
-      }
-      .cart-icon {
+      // Orders
+      .my-orders-icon-tooltip {
         position: relative;
-        top: 2px;
-        span {
-          min-width: 20px;
-          text-align: center;
-          background-color: #8e2de2;
-          padding: 2.5px;
+        .my-orders-icon {
+          display: none;
+          @include md {
+            display: block;
+          }
+        }
+        .tooltip {
+          display: none;
           position: absolute;
-          top: -5px;
-          right: -12px;
-          font-size: 12px;
-          line-height: 1;
-          border-radius: 10px;
+          top: 25px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #979797;
+          color: black;
+          padding: 2px 5px;
+          border-radius: 3px;
         }
       }
-      .login-icon {
-        display: none;
-        @include md {
-          display: block;
+      .my-orders-icon-tooltip .my-orders-icon:hover + .tooltip {
+        display: inline-block;
+      }
+      //Contact
+      .contact-icon-tooltip {
+        position: relative;
+        .contact-icon {
+          display: none;
+          @include md {
+            display: block;
+          }
+        }
+        .tooltip {
+          display: none;
+          position: absolute;
+          top: 25px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #979797;
+          color: black;
+          padding: 2px 5px;
+          border-radius: 3px;
         }
       }
-      .logout-icon {
-        display: none;
-        @include md {
-          display: block;
+      .contact-icon-tooltip .contact-icon:hover + .tooltip {
+        display: inline-block;
+      }
+      //cart
+      .cart-icon-tooltip {
+        position: relative;
+        .cart-icon-main {
+          position: relative;
+          top: 2px;
+          .cart-no {
+            min-width: 20px;
+            text-align: center;
+            background-color: #8e2de2;
+            padding: 2.5px;
+            position: absolute;
+            top: -5px;
+            right: -12px;
+            font-size: 12px;
+            line-height: 1;
+            border-radius: 10px;
+            cursor: pointer;
+          }
+        }
+        .tooltip {
+          display: none;
+          position: absolute;
+          top: 27px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #979797;
+          color: black;
+          padding: 2px 5px;
+          border-radius: 3px;
         }
       }
+      .cart-icon-tooltip .cart-icon-main:hover + .tooltip {
+        display: inline-block;
+      }
+      //login
+      .login-icon-tooltip {
+        position: relative;
+        .login-icon {
+          display: none;
+          @include md {
+            display: block;
+          }
+        }
+        .tooltip {
+          display: none;
+          position: absolute;
+          top: 25px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #979797;
+          color: black;
+          padding: 2px 5px;
+          border-radius: 3px;
+        }
+      }
+      .login-icon-tooltip .login-icon:hover + .tooltip {
+        display: inline-block;
+      }
+      //logout
+      .logout-icon-tooltip {
+        position: relative;
+        .logout-icon {
+          display: none;
+          @include md {
+            display: block;
+          }
+        }
+        .tooltip {
+          display: none;
+          position: absolute;
+          top: 25px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #979797;
+          color: black;
+          padding: 2px 5px;
+          border-radius: 3px;
+        }
+      }
+      .logout-icon-tooltip .logout-icon:hover + .tooltip {
+        display: inline-block;
+      }
+
       .navbar-menu {
         width: 35px;
         height: 35px;
