@@ -13,6 +13,7 @@ import {
   Contact,
   Home,
   Login,
+  NotFound,
   OrderDetails,
   Register,
   Reset,
@@ -48,6 +49,7 @@ function App() {
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/order-details/:id" element={<OrderDetails />} />
           <Route path="/review-product/:id" element={<ReviewProducts />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>

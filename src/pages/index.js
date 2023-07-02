@@ -8,5 +8,6 @@ export { default as CheckoutDetails } from "./checkout/checkoutDetails/CheckoutD
 export { default as CheckoutSuccess } from "./checkout/checkoutSuccess/CheckoutSuccess.jsx";
 export { default as Contact } from "./contact/Contact.jsx";
 export { default as Home } from "./home/Home.jsx";
+export { default as NotFound } from "./notFound//NotFound.jsx";
 export { default as OrderDetails } from "./orderDetails/OrderDetails.jsx";
 

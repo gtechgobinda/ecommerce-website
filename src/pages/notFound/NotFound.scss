@@ -1,0 +1,36 @@
+@import "../../css-config/mixins.scss";
+.not-found-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  h2 {
+    font-size: 50px;
+  }
+  p {
+    @include md {
+      font-size: 20px;
+    }
+  }
+  .backToHome-Btn {
+    text-transform: uppercase;
+    padding: 5px 7px;
+    font-size: 14px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #8e2de2, #4a00e0);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    &:hover {
+      background-image: none;
+      background-color: #8e2de2;
+      transition: ease-in-out;
+    }
+  }
+}
