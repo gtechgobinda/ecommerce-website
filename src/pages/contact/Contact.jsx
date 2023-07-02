@@ -22,6 +22,7 @@ const Contact = () => {
           toast.error(error.text);
         }
       );
+    e.target.reset();
   };
   return (
     <>
