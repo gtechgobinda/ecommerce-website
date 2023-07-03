@@ -37,7 +37,7 @@ const Checkout = () => {
   const description = `gtechstore payment: email:${customerEmail},Amount:${totalAmount}`;
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://testgtechstore.netlify.app/create-payment-intent", {
+    fetch("https://gtechstore-backend.onrender.com/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
