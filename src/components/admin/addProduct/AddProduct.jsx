@@ -96,7 +96,7 @@ const AddProduct = () => {
     setIsLoading(true);
 
     try {
-      const docRef = addDoc(collection(db, "products"), {
+      addDoc(collection(db, "products"), {
         name: product.name,
         imageURL: product.imageURL,
         price: Number(product.price),

@@ -61,7 +61,7 @@ const OrderDetails = () => {
                 Country: {order.shippingAddress.country}
               </p>
             </div>
-            {order.cartItems.map((cart, index) => {
+            {order.cartItems.map((cart) => {
               const { id, name, price, imageURL, cartQuantity } = cart;
               return (
                 <>

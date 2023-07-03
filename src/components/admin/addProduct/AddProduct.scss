@@ -8,11 +8,26 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     width: 100%;
-    label {
-    }
     input {
+      width: 100%;
+      padding: 5px 8px;
+      outline: none;
+      font-size: 15px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      &:active {
+        border: 1px solid #8e2de2;
+      }
+    }
+    select {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      outline: none;
+      padding: 5px 8px;
+      cursor: pointer;
+      &:active {
+        border: 1px solid #8e2de2;
+      }
     }
     button {
       width: 100%;
@@ -35,19 +50,17 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      border: 1px solid black;
+      border: 1px solid #8e2de2;
       padding: 10px;
       .progress {
         display: flex;
         flex-direction: column;
         background-color: #cfcccc;
-        border-radius: 4px;
         .progress-bar {
           display: flex;
           flex-direction: column;
           background-color: #8e2de2;
           padding: 5px 10px;
-          border-radius: 4px;
           color: white;
         }
       }
