@@ -5,7 +5,7 @@ import { getStorage } from "firebase/storage";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCJ7jWu4YWaxpiz-mQHmlmyf0gVBz-OO4c",
+  apiKey:import.meta.env.VITE_REACT_APP_FB_API_KEY,
   authDomain: "ecommerce-website1-41753.firebaseapp.com",
   projectId: "ecommerce-website1-41753",
   storageBucket: "ecommerce-website1-41753.appspot.com",

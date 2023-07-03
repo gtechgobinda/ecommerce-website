@@ -9,7 +9,7 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        "service_6amjava",
+        import.meta.env.VITE_REACT_EMAILJS_SERVICE_ID,
         "template_unx8tri",
         form.current,
         "jW47gE_rb8WNC-23d"

@@ -10,7 +10,7 @@ const AdminOnlyRoute = ({ children }) => {
     navigate("/");
   };
   const userEmail = useSelector(selectEmail);
-  if (userEmail === "testgobinda@gmail.com") {
+  if (userEmail === import.meta.env.VITE_REACT_ADMIN_USER) {
     return children;
   }
   return (
@@ -30,7 +30,7 @@ const AdminOnlyRoute = ({ children }) => {
 // eslint-disable-next-line react/prop-types
 export const AdminOnlyLink = ({ children }) => {
   const userEmail = useSelector(selectEmail);
-  if (userEmail === "testgobinda@gmail.com") {
+  if (userEmail === import.meta.env.VITE_REACT_ADMIN_USER) {
     return children;
   }
   return null;
