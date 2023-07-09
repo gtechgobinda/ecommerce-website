@@ -25,9 +25,11 @@ const ViewProducts = () => {
   const { data, isLoading } = useFetchCollection("products");
   const products = useSelector(selectProducts);
   const filteredProducts = useSelector(selectFilteredProducts);
+
   //pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(10);
+  // const [productsPerPage, setProductsPerPage] = useState(10);
+  const [productsPerPage] = useState(10);
 
   //Get Current products
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -48,36 +50,6 @@ const ViewProducts = () => {
   useEffect(() => {
     dispatch(FILTER_BY_SEARCH({ products, search }));
   }, [dispatch, products, search]);
-
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
-  // const getProducts = () => {
-  //   setIsLoading(true);
-  //   try {
-  //     const productsRef = collection(db, "products");
-  //     const q = query(productsRef, orderBy("createdAt", "desc"));
-  //     onSnapshot(q, (snapshot) => {
-  //       // console.log(snapshot.docs);
-  //       const allProducts = snapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       }));
-  //       console.log(allProducts);
-  //       setProducts(allProducts);
-  //       setIsLoading(false);
-  //       dispatch(
-  //         STORE_PRODUCTS({
-  //           products: allProducts,
-  //         })
-  //       );
-  //     });
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     toast.error(error.message);
-  //     console.error(error);
-  //   }
-  // };
 
   const confirmDelete = (id, imageURL) => {
     Notiflix.Confirm.show(

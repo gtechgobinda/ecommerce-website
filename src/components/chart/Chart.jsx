@@ -61,7 +61,6 @@ const Chart = () => {
       {
         label: "Order Count",
         data: [placed, processing, shipped, delivered],
-        // backgroundColor: "rgba(255, 99, 132, 0.5)",
         backgroundColor: "#8E2DE2",
       },
     ],

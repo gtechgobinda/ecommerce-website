@@ -22,7 +22,6 @@ import "./CheckoutForm.scss";
 const CheckoutForm = () => {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // const [email, setEmail] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();

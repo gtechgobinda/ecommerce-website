@@ -27,9 +27,6 @@ const Orders = () => {
     <>
       <div className="all-order-container">
         <h2>All Orders</h2>
-        <p>
-          Open an order to leave a <b>Product Review</b>
-        </p>
         <br />
         <>
           {isLoading && <Loader />}

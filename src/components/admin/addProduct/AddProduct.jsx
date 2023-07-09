@@ -34,7 +34,6 @@ const AddProduct = () => {
   console.log(id);
   const navigate = useNavigate();
   const products = useSelector(selectProducts);
-  // console.log(products);
   const productEdit = products.find((item) => item.id === id);
   console.log(productEdit);
 
@@ -66,7 +65,6 @@ const AddProduct = () => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        // console.log("Upload is " + progress + "% done");
         setUploadProgress(progress);
         switch (snapshot.state) {
           case "paused":
@@ -84,7 +82,6 @@ const AddProduct = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setProduct({ ...product, imageURL: downloadURL });
           toast.success("Image upload successfully");
-          // console.log("File available at", downloadURL);
         });
       }
     );
@@ -92,7 +89,6 @@ const AddProduct = () => {
 
   const addProduct = (e) => {
     e.preventDefault();
-    // console.log(product);
     setIsLoading(true);
 
     try {

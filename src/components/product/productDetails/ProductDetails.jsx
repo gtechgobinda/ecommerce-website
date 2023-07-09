@@ -61,11 +61,7 @@ const ProductDetails = () => {
           ) : (
             <div className="single-product-page">
               <div className="left">
-                {/* {product === null ? (
-                <Loader />
-              ) : ( */}
                 <img src={product.imageURL} alt={product.name} />
-                {/* )} */}
               </div>
               <div className="right">
                 <span className="name">{product.name}</span>
@@ -97,16 +93,6 @@ const ProductDetails = () => {
                     Brand:
                     <span>{product.brand}</span>
                   </span>
-                  {/* <span className="text-bold">
-                    Share:
-                    <span className="social-icons">
-                      <FaFacebookF size={16} />
-                      <FaTwitter size={16} />
-                      <FaInstagram size={16} />
-                      <FaLinkedinIn size={16} />
-                      <FaPinterest size={16} />
-                    </span>
-                  </span> */}
                 </div>
               </div>
             </div>

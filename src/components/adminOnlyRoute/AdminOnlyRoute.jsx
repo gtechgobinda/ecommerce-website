@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { selectEmail } from "../../redux/slice/authSlice";
 import "./AdminOnlyRoutes.scss";
 
-// eslint-disable-next-line react/prop-types
 const AdminOnlyRoute = ({ children }) => {
   const navigate = useNavigate();
   const handleBackToHome = () => {
@@ -27,7 +26,6 @@ const AdminOnlyRoute = ({ children }) => {
   );
 };
 
-// eslint-disable-next-line react/prop-types
 export const AdminOnlyLink = ({ children }) => {
   const userEmail = useSelector(selectEmail);
   if (userEmail === import.meta.env.VITE_REACT_ADMIN_USER) {
