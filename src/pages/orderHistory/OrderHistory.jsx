@@ -25,60 +25,6 @@ const OrderHistory = () => {
   const filteredOrders = orders.filter((order) => order.userID === userID);
   return (
     <>
-      {/* <section>
-        <div className="order-container">
-          <h2>Order History</h2>
-          <p>
-            Open an order to leave a <b>Product Review</b>
-          </p>
-          <br />
-          <>
-            {isLoading && <Loader />}
-            <div className="table">
-              {orders.length === 0 ? (
-                <p>No order found</p>
-              ) : (
-                <table>
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Date</th>
-                      <th>OrderID</th>
-                      <th>Order Amount</th>
-                      <th>Order Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {orders.map((order, index) => {
-                      const {
-                        id,
-                        orderDate,
-                        orderTime,
-                        orderAmount,
-                        orderStatus,
-                      } = order;
-                      return (
-                        <>
-                          <tr key={id}>
-                            <td>{index + 1}</td>
-                            <td>
-                              {orderDate} at {orderTime}
-                            </td>
-                            <td>{id}</td>
-                            <td>{orderAmount}</td>
-                            <td>{orderStatus}</td>
-                          </tr>
-                        </>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              )}
-            </div>
-          </>
-        </div>
-      </section> */}
-
       <div className="orderHistory-container">
         <h2 className="heading">Your Order History</h2>
         <p className="heading-next-text">

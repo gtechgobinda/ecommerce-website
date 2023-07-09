@@ -17,7 +17,6 @@ const Register = () => {
   const navigate = useNavigate();
   const registerUser = (e) => {
     e.preventDefault();
-    // console.log(fullName, email, password, confirmpPassword);
     if (password !== confirmpPassword) {
       toast.error("Password don't match");
     } else {

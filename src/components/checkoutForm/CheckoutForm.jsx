@@ -82,7 +82,7 @@ const CheckoutForm = () => {
       .confirmPayment({
         elements,
         confirmParams: {
-          return_url: "http://localhost:5173/checkout-success",
+          return_url: "http://gtechstore.netlify.app/checkout-success",
         },
         redirect: "if_required",
       })

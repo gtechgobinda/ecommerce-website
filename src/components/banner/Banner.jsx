@@ -1,6 +1,9 @@
 import BannerImg from "../../assets/banner-img.png";
 import "./Banner.scss";
 const Banner = () => {
+  const scrollToProducts = () => {
+    window.scrollTo({ top: 600, behavior: "smooth" });
+  };
   return (
     <div className="hero-banner">
       <div className="content">
@@ -12,7 +15,9 @@ const Banner = () => {
           </p>
           <div className="ctas">
             <div className="banner-cta">Read More</div>
-            <div className="banner-cta v2">Shop Now</div>
+            <div className="banner-cta v2" onClick={scrollToProducts}>
+              Shop Now
+            </div>
           </div>
         </div>
         <img src={BannerImg} alt="" className="banner-img" />

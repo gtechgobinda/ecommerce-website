@@ -1,8 +1,6 @@
 @import "../../css-config/mixins.scss";
 .order-details-container {
   padding: 15px;
-  .order-details-heading {
-  }
   .backToOrders {
     display: flex;
     flex-direction: row;
@@ -13,8 +11,6 @@
     margin-bottom: 5px;
     cursor: pointer;
     font-size: 15px;
-  }
-  .order-details-main {
   }
   .order-item {
     display: flex;

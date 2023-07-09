@@ -1,8 +1,6 @@
 @import "../../../css-config/mixins.scss";
 .checkout-container {
   padding: 20px 25px;
-  .checkout-heading {
-  }
   .summary-and-address {
     display: flex;
     flex-direction: column-reverse;
@@ -98,8 +96,6 @@
           transition: ease-in-out;
         }
       }
-    }
-    .checkout-summary {
     }
   }
 }
