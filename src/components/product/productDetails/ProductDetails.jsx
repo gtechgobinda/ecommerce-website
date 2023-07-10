@@ -45,6 +45,7 @@ const ProductDetails = () => {
     dispatch(ADD_TO_CART(product));
     dispatch(CALCULATE_TOTAL_QUANTITY());
   };
+
   return (
     <>
       <div className="single-product-main-content">

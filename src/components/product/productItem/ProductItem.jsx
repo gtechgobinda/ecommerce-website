@@ -8,8 +8,12 @@ import "./ProductItem.scss";
 const ProductItem = ({ product, id, name, price, desc, imageURL }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const onClickProduct = () => {
     navigate(`/product-details/${id}`);
+    scrollToTop();
   };
 
   const addToCart = () => {

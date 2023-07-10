@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-// import { AiOutlineHeart} from "react-icons/ai";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { CgShoppingCart } from "react-icons/cg";
 import { FaBoxOpen } from "react-icons/fa";
@@ -28,7 +27,6 @@ import "./Header.scss";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [displayName, setDisplayName] = useState();
   const [profilePhoto, setProfilePhoto] = useState();
@@ -117,7 +115,6 @@ const Header = () => {
           <ul className="left">
             <li>Home</li>
             <li>About</li>
-            {/* <li>Categories</li> */}
             <li>
               <AdminOnlyLink>
                 <Link to="/admin/home">
@@ -130,7 +127,6 @@ const Header = () => {
             GTECHSTORE.
           </div>
           <div className="right">
-            {/* <TbSearch onClick={() => setShowSearch(true)} /> */}
             <ShowOnLogin>
               <span className="my-orders-icon-tooltip">
                 <FaBoxOpen
@@ -140,7 +136,6 @@ const Header = () => {
                 <p className="tooltip">Orders</p>
               </span>
             </ShowOnLogin>
-            {/* <AiOutlineHeart className="favourite-icon" /> */}
             <span className="contact-icon-tooltip">
               <MdContactSupport
                 onClick={() => navigate("/contact")}
@@ -222,10 +217,6 @@ const Header = () => {
                         <MdContactSupport />
                         Contact Us
                       </li>
-                      {/* <li>
-                        <AiOutlineHeart />
-                        Favourite
-                      </li> */}
                       <ShowOnLogout>
                         <li onClick={handleLoginMenu}>
                           <TbLogin />
