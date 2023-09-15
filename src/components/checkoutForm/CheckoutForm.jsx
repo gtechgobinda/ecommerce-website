@@ -17,6 +17,7 @@ import {
 } from "../../redux/slice/cartSlice";
 import { selectShippingAddress } from "../../redux/slice/checkoutSlice";
 import CheckoutSummary from "../checkoutSummary/CheckoutSummary";
+import StripeTestCard from "../stripeTestCard/StripeTestCard";
 import "./CheckoutForm.scss";
 
 const CheckoutForm = () => {
@@ -117,30 +118,33 @@ const CheckoutForm = () => {
           <div className="checkout-summary">
             <CheckoutSummary />
           </div>
-          <form onSubmit={handleSubmit} className="checkout-form">
-            <div className="checkout-pay">
-              <h3 className="checkout-pay-h3">Stripe payment</h3>
-              <PaymentElement
-                id="payment-element"
-                options={paymentElementOptions}
-              />
-              <button
-                disabled={isLoading || !stripe || !elements}
-                id="submit"
-                className="paynow-button"
-              >
-                <span id="button-text">
-                  {isLoading ? (
-                    <div className="spinner" id="spinner"></div>
-                  ) : (
-                    "Pay now"
-                  )}
-                </span>
-              </button>
-              {/* Show any error or success messages */}
-              {message && <div id="payment-message">{message}</div>}
-            </div>
-          </form>
+          <div className="payment-container">
+            <form onSubmit={handleSubmit} className="checkout-form">
+              <div className="checkout-pay">
+                <h3 className="checkout-pay-h3">Stripe payment</h3>
+                <PaymentElement
+                  id="payment-element"
+                  options={paymentElementOptions}
+                />
+                <button
+                  disabled={isLoading || !stripe || !elements}
+                  id="submit"
+                  className="paynow-button"
+                >
+                  <span id="button-text">
+                    {isLoading ? (
+                      <div className="spinner" id="spinner"></div>
+                    ) : (
+                      "Pay now"
+                    )}
+                  </span>
+                </button>
+                {/* Show any error or success messages */}
+                {message && <div id="payment-message">{message}</div>}
+              </div>
+            </form>
+            <StripeTestCard />
+          </div>
         </div>
       </div>
     </>
