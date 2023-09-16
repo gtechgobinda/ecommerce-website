@@ -45,6 +45,9 @@ const Header = () => {
       setScrolled(false);
     }
   };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const logoutUser = () => {
     setToggle(false);
     signOut(auth)
@@ -94,18 +97,33 @@ const Header = () => {
   const handleHomeMenu = () => {
     navigate("/");
     setToggle(false);
+    scrollToTop();
   };
-  const handleMyOrdersMenu = () => {
+  const handleMyOrders = () => {
     navigate("/order-history");
     setToggle(false);
+    scrollToTop();
   };
   const handleContactMenu = () => {
     navigate("/contact");
     setToggle(false);
+    scrollToTop();
   };
   const handleLoginMenu = () => {
     navigate("/login");
     setToggle(false);
+  };
+  const handleTitle = () => {
+    navigate("/");
+    scrollToTop();
+  };
+  const handleCart = () => {
+    navigate("/cart");
+    scrollToTop();
+  };
+  const handleContact = () => {
+    navigate("/contact");
+    scrollToTop();
   };
 
   return (
@@ -113,7 +131,7 @@ const Header = () => {
       <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
         <div className="header-content">
           <ul className="left">
-            <li>Home</li>
+            <li onClick={handleTitle}>Home</li>
             <li>About</li>
             <li>
               <AdminOnlyLink>
@@ -123,7 +141,7 @@ const Header = () => {
               </AdminOnlyLink>
             </li>
           </ul>
-          <div className="center" onClick={() => navigate("/")}>
+          <div className="center" onClick={handleTitle}>
             GTECHSTORE.
           </div>
           <div className="right">
@@ -131,23 +149,20 @@ const Header = () => {
               <span className="my-orders-icon-tooltip">
                 <FaBoxOpen
                   className="my-orders-icon"
-                  onClick={() => navigate("/order-history")}
+                  onClick={handleMyOrders}
                 />
                 <p className="tooltip">Orders</p>
               </span>
             </ShowOnLogin>
             <span className="contact-icon-tooltip">
               <MdContactSupport
-                onClick={() => navigate("/contact")}
+                onClick={handleContact}
                 className="contact-icon"
               />
               <p className="tooltip">Contact</p>
             </span>
             <span className="cart-icon-tooltip">
-              <span
-                className="cart-icon-main"
-                onClick={() => navigate("/cart")}
-              >
+              <span className="cart-icon-main" onClick={handleCart}>
                 <CgShoppingCart className="cart-icon" />
                 {cartTotalQuantity === 0 ? null : (
                   <>{<span className="cart-no">{cartTotalQuantity}</span>}</>
@@ -208,7 +223,7 @@ const Header = () => {
                         Home
                       </li>
                       <ShowOnLogin>
-                        <li onClick={handleMyOrdersMenu}>
+                        <li onClick={handleMyOrders}>
                           <FaBoxOpen />
                           My orders
                         </li>

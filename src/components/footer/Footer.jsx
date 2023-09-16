@@ -1,7 +1,6 @@
 import { FaEnvelope, FaLocationArrow, FaMobileAlt } from "react-icons/fa";
 import Payment from "../../assets/payments.png";
 import "./Footer.scss";
-
 const date = new Date();
 const year = date.getFullYear();
 
@@ -13,9 +12,10 @@ const Footer = () => {
           <div className="col">
             <div className="title">About</div>
             <div className="text about-text">
-              Voluptatem accusantium doloremque laudantium, totam rem aperiam,
-              eaque ipsa quae ab illo inventore veritatis et quasi architecto
-              beatae vitae dicta sunt explicabo eaque ipsa quae ab illo.
+              At GTECHSTORE, we're your one-stop destination for the latest and
+              greatest in tech products. We understand that technology is
+              constantly evolving, and we're here to help you stay ahead of the
+              curve.
             </div>
           </div>
           <div className="col">
