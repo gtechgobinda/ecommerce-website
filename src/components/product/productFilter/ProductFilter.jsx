@@ -41,11 +41,17 @@ const ProductFilter = () => {
   const filterProducts = (cat) => {
     setCategory(cat);
     dispatch(FILTER_BY_CATEGORY({ products, category: cat }));
+    setToogle(false);
   };
   const clearFilters = () => {
     setCategory("All");
     setBrand("All");
     setPrice(maxPrice);
+    setToogle(false);
+  };
+  const handleBrand = (e) => {
+    setToogle(false);
+    setBrand(e.target.value);
   };
   return (
     <>
@@ -106,7 +112,8 @@ const ProductFilter = () => {
                     <h4>BRAND</h4>
                     <select
                       value={brand}
-                      onChange={(e) => setBrand(e.target.value)}
+                      // onChange={(e) => setBrand(e.target.value)}
+                      onChange={handleBrand}
                     >
                       {allBrands.map((brand, index) => {
                         return (
