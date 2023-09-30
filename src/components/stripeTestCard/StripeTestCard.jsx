@@ -1,7 +1,7 @@
 import "./StripeTestCard.scss";
 const StripeTestCard = () => {
   return (
-    <div className="container">
+    <div className="card-container">
       <p className="disclaimer">
         <p>Use This Stripe Test Card to make this payment.</p>
         <p>
