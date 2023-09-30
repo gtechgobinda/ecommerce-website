@@ -2,6 +2,7 @@
 
 .success-wrapper {
   height: 100vh;
+  top: 0;
   .success {
     display: flex;
     flex-direction: column;
@@ -43,19 +44,19 @@
     .btn {
       width: 100%;
       padding: 10px 20px;
-      background-color: #8e2de2;
+      background-image: linear-gradient(to left, #8e2de2, #4a00e0);
       color: white;
       border: none;
       font-size: 15px;
       text-transform: uppercase;
       cursor: pointer;
-      border-radius: 10px;
       @include md {
         width: 350px;
         font-size: 20px;
       }
       &:hover {
-        background-color: #944bd4;
+        background-image: none;
+        background-color: #8e2de2;
         transition: ease-in-out;
       }
     }
